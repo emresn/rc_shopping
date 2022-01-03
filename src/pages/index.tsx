@@ -15,7 +15,7 @@ export default function HomePage() {
       {banners && <Banner banners={banners} />}
       <div className='md:container md:mx-auto'>
         <CategoriesRibbon />
-        <div className='inline-flex flex-col gap-4 py-4'>
+        <div className='inline-flex flex-col gap-4 py-4 w-full'>
           <h3>Popular Products</h3>
           <div className='grid grid-cols-4 gap-8'>
             {ProductsExampleList.map((item, index) => (
@@ -27,7 +27,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        <div className='inline-flex flex-col gap-4 py-4'>
+        <div className='inline-flex flex-col gap-4 py-4 w-full'>
           <h3>Hot Deals</h3>
           <div className='grid grid-cols-4 gap-8'>
             {ProductsExampleList.map((item, index) => (

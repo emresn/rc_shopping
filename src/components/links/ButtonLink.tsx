@@ -30,16 +30,16 @@ export default function ButtonLink({
     <UnstyledLink
       {...rest}
       className={clsxm(
-        'inline-flex items-center px-4 py-2 font-semibold rounded',
+        'inline-flex items-center px-4 py-2 font-semibold rounded-md',
         'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
         'shadow-sm',
         'transition-colors duration-75',
         [
           variant === 'primary' && [
-            'bg-primary-500 text-white',
+            'bg-primary-600 text-white',
             'border border-primary-600',
-            'hover:bg-primary-600 hover:text-white',
-            'active:bg-primary-500',
+            'hover:bg-primary-500 hover:text-white',
+            'active:bg-primary-600',
             'disabled:bg-primary-400 disabled:hover:bg-primary-400',
           ],
           variant === 'outline' && [

@@ -15,6 +15,11 @@ export const exampleProduct: ProductModel = {
       path: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813411/products/electronics1_ig5mgl.jpg',
       productId: 'd6e79181-2c6a-4be4-9c82-91c1ac3d83ad',
     },
+    {
+      id: '4',
+      path: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813411/products/transistors_rnpto7.jpg',
+      productId: 'd6e79181-2c6a-4be4-9c82',
+    },
   ],
   title: '3x Transistors 552',
   subtitle: '3x Transistors 552 3x Transistors 552',

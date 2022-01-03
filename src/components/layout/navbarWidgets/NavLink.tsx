@@ -14,8 +14,8 @@ export const NavLink = ({ menuItem }: Props) => {
     <PopoverMenu menuItem={menuItem} />
   ) : (
     <Link href={menuItem.href}>
-      <a className='text-base font-medium'>
-        <div className='inline-flex flex-row items-center text-base hover:text-red-700'>
+      <a className='font-medium'>
+        <div className='inline-flex flex-row items-center hover:text-gray-600'>
           <span className='mr-2 text-indigo-700'>
             <FontAwesomeIcon className='w-5' icon={menuItem.icon} />
           </span>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Counter from '../../features/counter/Counter';
+import Counter from '../../components/counter/Counter';
 
 const CounterView = () => {
   return (

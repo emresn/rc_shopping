@@ -12,19 +12,23 @@ interface Props {
 
 export const ShowProduct = ({ product, index }: Props) => {
   return (
-    <Link href={`/products/p/${product.key}`} passHref>
+    <Link
+      href={`/products/p/${product.key}--${product.id.substring(
+        product.id.length - 7
+      )}`}
+      passHref
+    >
       <div className='inline-flex flex-col cursor-pointer hover:bg-gray-200'>
-        <div className='w-full'>
-          {product.images != null && (
-            <NextImage
-              width='300'
-              height='300'
-              key={`${product.key}--${index}`}
-              src={product.images[0].path}
-              alt={product.images[0].id}
-            />
-          )}
-        </div>
+        {product.images != null && (
+          <NextImage
+            className='w-full'
+            width='200'
+            height='200'
+            key={`${product.key}--${index}`}
+            src={product.images[0].path}
+            alt={product.images[0].id}
+          />
+        )}
         <div className='prod-title flex flex-col p-2'>
           <p className='text-2xl font-bold text-gray-900'>{product.title}</p>
           <p className='my-2 text-base'>{product.description}</p>

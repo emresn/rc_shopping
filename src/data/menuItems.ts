@@ -1,11 +1,10 @@
 import {
-  faEnvelope,
   faHome,
   faInfoCircle,
+  faMapMarkedAlt,
   faQuestionCircle,
-  faSignOutAlt,
+  faStore,
   faThLarge,
-  faUserAlt,
   faUserShield,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -52,6 +51,11 @@ export const moreMenuItems: MenuItemModel[] = [
     href: '/counter',
     icon: faInfoCircle,
   },
+  {
+    title: 'Components',
+    href: '/components',
+    icon: faInfoCircle,
+  },
 ];
 
 export const guestMenuItems: MenuItemModel[] = [
@@ -63,9 +67,14 @@ export const guestMenuItems: MenuItemModel[] = [
   {
     title: 'Products',
     href: '/products',
-    icon: faThLarge,
+    icon: faStore,
     isExpanded: true,
     subCategories: productsMenuItems,
+  },
+  {
+    title: 'Track Order',
+    href: '/track-order',
+    icon: faMapMarkedAlt,
   },
   {
     title: 'More',
@@ -77,32 +86,10 @@ export const guestMenuItems: MenuItemModel[] = [
 ];
 
 export const userMenuItems: MenuItemModel[] = [
+  ...guestMenuItems,
   {
     title: 'Dashboard',
     href: '/dashboard',
     icon: faThLarge,
-  },
-
-  {
-    title: 'Messages',
-    href: '/dashboard/messages',
-    icon: faEnvelope,
-  },
-  {
-    title: 'My Profile',
-    href: '/dashboard/profile-informations',
-    icon: faUserAlt,
-  },
-  {
-    title: 'More',
-    href: '/more',
-    icon: faThLarge,
-    isExpanded: true,
-    subCategories: moreMenuItems,
-  },
-  {
-    title: 'Signout',
-    href: '/api/auth/logout',
-    icon: faSignOutAlt,
   },
 ];

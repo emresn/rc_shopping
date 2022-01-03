@@ -22,6 +22,7 @@ export const Banner = ({ banners }: Props) => {
         {banners.map((banner, idx) => (
           <div className={idx === activeTab ? '' : 'hidden'} key={idx}>
             <NextImage
+              priority
               alt={banner.alt}
               width='100%'
               height='20'

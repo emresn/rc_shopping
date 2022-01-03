@@ -1,3 +1,7 @@
-## RC Shopping
+### RC Shopping
 
-A React shopping app
+A Next.js Shopping app
+
+#### Setup
+
+- create .env.local file and add auth0 credentials.

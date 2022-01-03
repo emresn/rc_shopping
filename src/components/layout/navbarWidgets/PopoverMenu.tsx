@@ -17,16 +17,16 @@ export const PopoverMenu = ({ menuItem }: Props) => {
         <>
           <Popover.Button
             className={
-              'font-medium group inline-flex items-center rounded-md hover:text-gray-900 focus:outline-none'
+              'font-medium group inline-flex items-center rounded-md  hover:text-gray-600'
             }
           >
-            <div className='flex flex-row items-center hover:text-black'>
+            <div className='flex flex-row items-center'>
               <span className='mr-2 text-indigo-700'>
                 <FontAwesomeIcon className='w-5' icon={menuItem.icon} />
               </span>
               <span>{menuItem.title}</span>
 
-              <span className='ml-2 text-gray-700'>
+              <span className='ml-2'>
                 <FontAwesomeIcon className='' icon={faChevronDown} />
               </span>
             </div>

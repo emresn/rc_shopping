@@ -21,21 +21,9 @@ const Counter = () => {
   return (
     <div className='inline-flex flex-col gap-3 p-3 mx-auto w-full'>
       <div className='inline-flex flex-row gap-3 justify-center'>
-        <button
-          className='p-4 text-white bg-gray-800 rounded-full'
-          aria-label='Decrement value'
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
+        {buildButton('-', 'Decrement value', () => dispatch(decrement()))}
         <span className='p-4 text-xl'>{count}</span>
-        <button
-          className='p-4 text-white bg-gray-800 rounded-full'
-          aria-label='Increment value'
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>
+        {buildButton('+', 'Increment value', () => dispatch(increment()))}
       </div>
       <div className='inline-flex flex-row gap-3 justify-center w-full'>
         <input
@@ -44,27 +32,32 @@ const Counter = () => {
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
-        <button
-          className='px-3 py-1 text-white bg-gray-800 rounded-xl'
-          onClick={() => dispatch(incrementByAmount(incrementValue))}
-        >
-          Add Amount
-        </button>
-        <button
-          className='px-3 py-1 text-white bg-gray-800 rounded-xl'
-          onClick={() => dispatch(incrementAsync(incrementValue))}
-        >
-          Add Async
-        </button>
-        <button
-          className='px-3 py-1 text-white bg-gray-800 rounded-xl'
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
-        >
-          Add If Odd
-        </button>
+
+        {buildButton('Add Amount', '', () =>
+          dispatch(incrementByAmount(incrementValue))
+        )}
+        {buildButton('Add Async', '', () =>
+          dispatch(incrementAsync(incrementValue))
+        )}
+        {buildButton('Add If Odd', '', () =>
+          dispatch(incrementIfOdd(incrementValue))
+        )}
       </div>
     </div>
   );
+
+  function buildButton(label: string, key: string, onClick: () => void) {
+    return (
+      <button
+        key={label}
+        className='p-4 text-white bg-gray-800 rounded-full'
+        aria-label={key}
+        onClick={onClick}
+      >
+        {label}
+      </button>
+    );
+  }
 };
 
 export default Counter;
