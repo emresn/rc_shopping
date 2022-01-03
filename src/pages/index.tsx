@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { banners } from '@/data/banners';
-import { ProductsExampleList } from '@/data/products';
+import { ProductsExampleList } from '@/data/Products';
 
 import { Banner } from '@/components/Banner';
 import { CategoriesRibbon } from '@/components/CategoriesRibbon';
