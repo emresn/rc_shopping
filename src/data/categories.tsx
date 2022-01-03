@@ -1,4 +1,3 @@
-import { CategoryModel } from '@/model/CategortModel';
 import {
   faHeadphonesAlt,
   faKeyboard,
@@ -8,6 +7,8 @@ import {
   faMouse,
   faTv,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { CategoryModel } from '@/model/CategortModel';
 
 export const Computers: CategoryModel = {
   name: 'Computers',

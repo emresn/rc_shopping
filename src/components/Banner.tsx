@@ -1,10 +1,13 @@
-import { BannerModel } from '@/model/BannerModel';
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+
+import { BannerModel } from '@/model/BannerModel';
+
+import NextImage from './NextImage';
 
 interface Props {
   banners: BannerModel[];
@@ -15,12 +18,17 @@ export const Banner = ({ banners }: Props) => {
 
   return (
     <>
-      <div className='bg-gradient-to-r from-slate-300 m-auto relative to-slate-100 w-full z--10'>
+      <div className='from-slate-300 to-slate-100 z--10 relative m-auto w-full bg-gradient-to-r'>
         {banners.map((banner, idx) => (
           <div className={idx === activeTab ? '' : 'hidden'} key={idx}>
-            <img className='h-80 mx-auto w-full' src={banner.path} />
-            <div className='absolute bottom-32 right-32 text text-sm sm:text-xl md:text-xl lg:text-3xl xl:text-4xl'>
-              <span className='bg-white p-2 rounded-2xl'>{banner.text}</span>
+            <NextImage
+              alt={banner.alt}
+              width='100%'
+              height='20'
+              src={banner.path}
+            />
+            <div className='text absolute right-32 bottom-32 text-sm sm:text-xl md:text-xl lg:text-3xl xl:text-4xl'>
+              <span className='p-2 bg-white rounded-2xl'>{banner.text}</span>
             </div>
           </div>
         ))}
@@ -48,14 +56,16 @@ export const Banner = ({ banners }: Props) => {
             activeTab < banners.length - 1
               ? setActiveTab(activeTab + 1)
               : setActiveTab(0);
-          } else {
+          } else if (isLeft) {
             activeTab > 0
               ? setActiveTab(activeTab - 1)
               : setActiveTab(banners.length - 1);
+          } else {
+            setActiveTab(0);
           }
         }}
       >
-        <span className='bg-gray-200 px-3 py-1 rounded-3xl text-xl'>
+        <span className='px-3 py-1 text-xl bg-gray-200 rounded-3xl'>
           <FontAwesomeIcon icon={isRight ? faChevronRight : faChevronLeft} />
         </span>
       </div>
@@ -64,7 +74,7 @@ export const Banner = ({ banners }: Props) => {
 
   function buildDots() {
     return (
-      <div className='absolute bottom-0 flex-row gap-1 inline-flex inset-x-0 items-center justify-center p-3'>
+      <div className='inline-flex absolute inset-x-0 bottom-0 flex-row gap-1 justify-center items-center p-3'>
         {Array.from(banners.keys()).map((idx) => (
           <span
             key={idx}

@@ -1,4 +1,5 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
 import { CategoryModel } from './CategortModel';
 
 export type MenuItemModel = {
@@ -10,7 +11,7 @@ export type MenuItemModel = {
 };
 
 export function MenuItemFromCategory(category: CategoryModel) {
-  var menuItem: MenuItemModel = {
+  const menuItem: MenuItemModel = {
     href: category.href,
     icon: category.icon,
     title: category.name,

@@ -1,4 +1,5 @@
 import { ProductModel } from '@/model/ProductModel';
+
 import { Electronics, Smartphones } from './categories';
 
 export const exampleProduct: ProductModel = {

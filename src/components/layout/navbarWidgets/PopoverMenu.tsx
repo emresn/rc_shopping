@@ -1,9 +1,10 @@
-import { MenuItemModel } from '@/model/MenuItemModel';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Popover, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
+
+import { MenuItemModel } from '@/model/MenuItemModel';
 
 interface Props {
   menuItem: MenuItemModel;
@@ -43,12 +44,12 @@ export const PopoverMenu = ({ menuItem }: Props) => {
           >
             <Popover.Panel
               static
-              className='-ml-4 absolute max-w-md mt-3 px-2 transform w-64 z-10 sm:px-0 lg:-translate-x-1/2 lg:left-1/2 lg:ml-0'
+              className='absolute z-10 px-2 mt-3 -ml-4 w-64 max-w-md transform sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2'
             >
-              <div className='overflow-hidden ring-1 ring-black ring-opacity-5 rounded-lg shadow-lg'>
-                <div className='bg-white grid relative'>
+              <div className='overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5 shadow-lg'>
+                <div className='grid relative bg-white'>
                   {menuItem.subCategories?.map((subItem) => (
-                    <BuildSubMenu item={subItem} />
+                    <BuildSubMenu key={subItem.title} item={subItem} />
                   ))}
                 </div>
               </div>
@@ -72,12 +73,12 @@ const BuildSubMenu = ({ item }: SubMenuProps) => {
           <div className='w-5'>
             <FontAwesomeIcon
               icon={item.icon}
-              className='flex-shrink-0 h-6 text-indigo-600 w-6'
+              className='flex-shrink-0 w-6 h-6 text-indigo-600'
               aria-hidden='true'
             />
           </div>
           <div className='ml-4'>
-            <p className='font-medium text-base text-gray-900'>{item.title}</p>
+            <p className='text-base font-medium text-gray-900'>{item.title}</p>
           </div>
         </a>
       </Link>

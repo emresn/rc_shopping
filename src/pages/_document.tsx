@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Document, {
   DocumentContext,
   Head,
@@ -34,3 +35,4 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
+/* eslint-disable */

@@ -1,14 +1,16 @@
-import { MenuItemFromCategory, MenuItemModel } from '@/model/MenuItemModel';
 import {
+  faEnvelope,
   faHome,
   faInfoCircle,
   faQuestionCircle,
-  faThLarge,
-  faEnvelope,
   faSignOutAlt,
+  faThLarge,
   faUserAlt,
   faUserShield,
 } from '@fortawesome/free-solid-svg-icons';
+
+import { MenuItemFromCategory, MenuItemModel } from '@/model/MenuItemModel';
+
 import {
   Computers,
   Electronics,
@@ -43,6 +45,11 @@ export const moreMenuItems: MenuItemModel[] = [
   {
     title: 'About Us',
     href: '/about-us',
+    icon: faInfoCircle,
+  },
+  {
+    title: 'Counter',
+    href: '/counter',
     icon: faInfoCircle,
   },
 ];
