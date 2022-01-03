@@ -1,8 +1,9 @@
-import { guestMenuItems } from '@/data/GuestMenuItems';
+import { guestMenuItems } from '@/data/menuItems';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React from 'react';
+import { NavLink } from './navbarWidgets/NavLink';
 
 interface Props {}
 
@@ -40,20 +41,9 @@ const LeftGroup = () => {
 
 const MiddleGroup = () => {
   return (
-    <div className='flex flex-row gap-4'>
+    <div className='flex flex-row gap-6'>
       {guestMenuItems.map((e) => (
-        <Link href={e.href} key={e.name}>
-          <a className='font-medium text-base' key={e.name}>
-            <div
-              className={`inline-flex flex-row  hover:text-red-700 items-center text-base`}
-            >
-              <span className='mr-2 text-indigo-700'>
-                <FontAwesomeIcon className='w-5' icon={e.icon} />
-              </span>
-              <span className=''>{e.name}</span>
-            </div>
-          </a>
-        </Link>
+        <NavLink menuItem={e} />
       ))}
     </div>
   );
