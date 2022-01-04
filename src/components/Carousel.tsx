@@ -62,7 +62,7 @@ export const Carousel = ({ item, className }: Props) => {
   function buildArrow({ isRight = false, isLeft = false }: arrowProps) {
     return (
       <div
-        className={`absolute inline-flex inset-y-0 items-center ${
+        className={`absolute inline-flex inset-y-0 items-center cursor-pointer ${
           isRight ? 'right-0' : 'left-0'
         } p-3 z-10`}
         onClick={() => {

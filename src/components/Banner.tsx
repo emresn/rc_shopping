@@ -49,7 +49,7 @@ export const Banner = ({ banners }: Props) => {
   function buildArrow({ isRight = false, isLeft = false }: arrowProps) {
     return (
       <div
-        className={`absolute inline-flex inset-y-0 items-center ${
+        className={`absolute inline-flex inset-y-0 items-center cursor-pointer ${
           isRight ? 'right-0' : 'left-0'
         } p-3 z-10`}
         onClick={() => {
@@ -75,7 +75,7 @@ export const Banner = ({ banners }: Props) => {
 
   function buildDots() {
     return (
-      <div className='inline-flex absolute inset-x-0 bottom-0 flex-row gap-1 justify-center items-center p-3'>
+      <div className='inline-flex absolute inset-x-0 bottom-0 flex-row gap-1 justify-center items-center p-3 cursor-pointer'>
         {Array.from(banners.keys()).map((idx) => (
           <span
             key={idx}

@@ -1,3 +1,5 @@
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
@@ -38,72 +40,15 @@ const ProductView = () => {
         </ArrowLink>
       </div>
 
-      <div className='flex flex-row justify-end'></div>
       {item ? (
-        <div className='flex flex-row gap-5 p-8 bg-white rounded-2xl border-2 border-gray-200'>
-          <Carousel item={item} className='w-1/3' />
-          <div className='inline-flex flex-col flex-auto'>
-            <p className='text-2xl font-bold text-gray-900'>{item.title}</p>
-            <p className='my-2 text-base'>{item.description}</p>
-            <div className='inline-flex flex-row justify-between items-center'>
-              <div className='inline-flex flex-row gap-3 items-center'>
-                <p className='font-bold'>Price</p>
-                {!item.discountPrice ? (
-                  <p className='text-xl font-bold'>{item.price} $</p>
-                ) : (
-                  <p className='text-xl font-bold text-red-500 line-through'>
-                    {item.price} $
-                  </p>
-                )}
-              </div>
-              <div className='space-x-5'>
-                <span className='text-base font-bold'>Count</span>
-                <select
-                  className='px-5 py-3 text-base bg-gray-200 border-b-2 border-gray-500 focus:border-b-2 focus:border-indigo-500 focus:outline-none'
-                  value={count}
-                  required
-                  id='country'
-                  onChange={(e) => countHandler(parseInt(e.target.value))}
-                >
-                  {Array.from(Array(item.stock).keys()).map((x) => (
-                    <option key={`${x + 1}`} value={x + 1}>
-                      {`${x + 1}`}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className='inline-flex flex-row gap-3 items-center'>
-              <p className='font-bold'>{`%${
-                item.discountPrice
-                  ? Math.floor((item.price / item.discountPrice) * 100 - 100)
-                  : 0
-              } discount`}</p>
-              <p className='text-xl font-bold'>
-                {item.discountPrice && item.discountPrice.toFixed(2)} $
-              </p>
-            </div>
-            <div className='inline-flex flex-row gap-10 justify-end items-center my-10 text-base font-bold'>
-              <div>Total Price</div>
-              <div>
-                <span>
-                  {(Number(count) * Number(item.discountPrice)).toFixed(2)} $
-                </span>
-              </div>
-            </div>
+        <div className='flex flex-row gap-5 p-4 h-3/4 bg-gray-100 rounded-lg border-2 shadow-lg'>
+          <Carousel item={item} className='flex-auto' />
 
-            <div className='inline-flex flex-row items-end'>
-              <div className='flex-auto'></div>
-              <ButtonLink
-                className='mr-0'
-                onClick={() => {
-                  print();
-                }}
-                href={'#'}
-              >
-                Add to cart
-              </ButtonLink>
-            </div>
+          <div className='inline-flex flex-col gap-4 justify-between w-2/3'>
+            {buildTitleAndSubtitle()}
+            {buildPricesAndCountSelector()}
+            {buildDescription()}
+            {buildTotalPriceAndAddCart()}
           </div>
         </div>
       ) : (
@@ -111,6 +56,98 @@ const ProductView = () => {
       )}
     </div>
   );
+
+  function buildTotalPriceAndAddCart() {
+    return (
+      <div className='inline-flex flex-col gap-1'>
+        <div className='inline-flex flex-row gap-4 justify-end items-center text-base font-bold'>
+          <span>Total Price:</span>
+          <span className='text-lg'>
+            {`${(Number(count) * Number(item.discountPrice)).toFixed(2)} $`}
+          </span>
+        </div>
+
+        <div className='inline-flex flex-row items-end'>
+          <div className='flex-auto'></div>
+          <ButtonLink className='mr-0' href={'#'}>
+            <div className='inline-flex flex-row gap-2'>
+              <span>
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </span>
+              <span>Add to cart</span>
+            </div>
+          </ButtonLink>
+        </div>
+      </div>
+    );
+  }
+
+  function buildDescription() {
+    return (
+      <>
+        <p className='text-ellipsis flex flex-nowrap my-2 text-base text-justify'>
+          {item.description}
+        </p>
+        <div className='flex-auto'></div>
+      </>
+    );
+  }
+
+  function buildPricesAndCountSelector() {
+    return (
+      <div className='inline-flex flex-row justify-between items-center'>
+        <div className='inline-flex flex-col'>
+          <div className='inline-flex flex-row gap-3 items-center'>
+            <p className='font-bold'>Price</p>
+            {!item.discountPrice ? (
+              <p className='text-xl font-bold'>
+                {parseFloat(item.price.toString()).toFixed(2)} $
+              </p>
+            ) : (
+              <p className='text-xl font-bold text-red-500 line-through'>
+                {parseFloat(item.price.toString()).toFixed(2)} $
+              </p>
+            )}
+          </div>
+          <div className='inline-flex flex-row gap-3 items-center'>
+            <p className='font-bold'>{`%${
+              item.discountPrice
+                ? Math.floor((item.price / item.discountPrice) * 100 - 100)
+                : 0
+            } discount`}</p>
+            <p className='px-2 py-1 text-xl font-bold bg-orange-300 rounded-lg'>
+              {item.discountPrice && item.discountPrice.toFixed(2)} $
+            </p>
+          </div>
+        </div>
+        <div className='space-x-5'>
+          <span className='text-base font-bold'>Count</span>
+          <select
+            className='px-5 py-3 text-base bg-gray-200 border-b-2 border-gray-500 focus:border-b-2 focus:border-indigo-500 focus:outline-none'
+            value={count}
+            required
+            id='country'
+            onChange={(e) => countHandler(parseInt(e.target.value))}
+          >
+            {Array.from(Array(item.stock).keys()).map((x) => (
+              <option key={`${x + 1}`} value={x + 1}>
+                {`${x + 1}`}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+    );
+  }
+
+  function buildTitleAndSubtitle() {
+    return (
+      <div className='inline-flex flex-col'>
+        <p className='text-2xl font-bold text-gray-900'>{item.title}</p>
+        <p className='my-2 text-base'>{item.subtitle}</p>
+      </div>
+    );
+  }
 };
 
 export default ProductView;

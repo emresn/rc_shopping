@@ -31,7 +31,7 @@ export const ShowProduct = ({ product, index }: Props) => {
         )}
         <div className='prod-title flex flex-col p-2'>
           <p className='text-2xl font-bold text-gray-900'>{product.title}</p>
-          <p className='my-2 text-base'>{product.description}</p>
+          <p className='my-2 text-base'>{product.subtitle}</p>
           <p className='text-xl font-bold text-red-500 line-through'>
             {product.price} $
           </p>

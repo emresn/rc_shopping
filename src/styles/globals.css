@@ -46,19 +46,19 @@
 
   /* #region  /**=========== Typography =========== */
   h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl;
+    @apply font-primary py-3 text-2xl font-bold md:text-4xl;
   }
 
   h2 {
-    @apply font-primary text-xl font-bold md:text-3xl;
+    @apply font-primary py-3 text-xl font-bold md:text-3xl;
   }
 
   h3 {
-    @apply font-primary text-lg font-bold md:text-2xl;
+    @apply font-primary py-3 text-lg font-bold md:text-2xl;
   }
 
   h4 {
-    @apply font-primary text-base font-bold md:text-lg;
+    @apply font-primary py-3 text-base font-bold md:text-lg;
   }
 
   body {
