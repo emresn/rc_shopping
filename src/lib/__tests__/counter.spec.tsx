@@ -4,14 +4,14 @@ import { Provider } from 'react-redux';
 
 import { makeStore } from '@/redux/store';
 
-jest.mock('../../components/counter/counterAPI', () => ({
+jest.mock('../../features/counter/counterAPI', () => ({
   fetchCount: (amount: number) =>
     new Promise<{ data: number }>((resolve) =>
       setTimeout(() => resolve({ data: amount }), 500)
     ),
 }));
 
-import Counter from '../../components/counter/Counter';
+import Counter from '../../features/counter/Counter';
 
 describe('<Counter />', () => {
   it('renders the component', () => {

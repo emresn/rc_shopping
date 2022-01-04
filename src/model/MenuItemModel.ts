@@ -6,6 +6,7 @@ export type MenuItemModel = {
   title: string;
   href: string;
   icon: IconDefinition;
+  className?: string;
   isExpanded?: boolean;
   subCategories?: MenuItemModel[];
 };

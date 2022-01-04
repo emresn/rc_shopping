@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loading = () => (
   <div
-    className='flex flex-auto justify-center items-center h-48'
+    className='flex flex-auto justify-center items-center'
     data-testid='loading'
   >
     <div>

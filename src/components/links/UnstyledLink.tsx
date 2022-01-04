@@ -1,7 +1,5 @@
 import Link, { LinkProps } from 'next/link';
 
-import clsxm from '@/lib/clsxm';
-
 export type UnstyledLinkProps = {
   href: string;
   children: React.ReactNode;
@@ -39,7 +37,7 @@ export default function UnstyledLink({
       rel='noopener noreferrer'
       href={href}
       {...rest}
-      className={clsxm('cursor-newtab', className)}
+      className={className}
     >
       {children}
     </a>

@@ -23,16 +23,13 @@ export const Navbar = () => {
   return (
     <header className='bg-gray-200'>
       <div className='px-2 mx-auto max-w-7xl sm:px-2'>
-        {error && <span>{error.message}</span>}
-        {isLoading && <Loading />}
-
         <div className='flex flex-row justify-between items-end py-4 md:justify-start md:space-x-0'>
           <LeftGroup />
-
           <MiddleGroup user={user} />
-          <RightGroup user={user} />
+          <RightGroup user={user} isLoading={isLoading} error={error} />
         </div>
       </div>
+      {error && <span>{error.message}</span>}
     </header>
   );
 };
@@ -57,6 +54,8 @@ const LeftGroup = () => {
 
 interface MiddleProps {
   user?: UserProfile;
+  isLoading?: boolean;
+  error?: Error;
 }
 
 const MiddleGroup = ({ user }: MiddleProps) => {
@@ -69,10 +68,14 @@ const MiddleGroup = ({ user }: MiddleProps) => {
   );
 };
 
-const RightGroup = ({ user }: MiddleProps) => {
+const RightGroup = ({ user, isLoading }: MiddleProps) => {
   return (
     <div className='hidden justify-end items-center space-x-2 md:flex md:flex-1 lg:w-0'>
-      {user ? (
+      {isLoading ? (
+        <>
+          <Loading />
+        </>
+      ) : user ? (
         <ButtonLink className='mt-2' variant='outline' href='/api/auth/logout'>
           <div className='inline-flex flex-row gap-2'>
             <FontAwesomeIcon
@@ -85,7 +88,7 @@ const RightGroup = ({ user }: MiddleProps) => {
         </ButtonLink>
       ) : (
         <>
-          <ButtonLink variant='primary' href='/api/auth/login'>
+          <ButtonLink variant='primary' href='/api/auth/login' className='mt-2'>
             <div className='inline-flex flex-row gap-2'>
               <FontAwesomeIcon
                 icon={faSignInAlt}
@@ -98,9 +101,9 @@ const RightGroup = ({ user }: MiddleProps) => {
         </>
       )}
 
-      {buildNotifierButton('/cart', faShoppingCart, 2)}
+      {buildNotifierButton('/cart', faShoppingCart, 1)}
 
-      {buildNotifierButton('/api/auth/login', faBell, 5)}
+      {user && buildNotifierButton('/notifications', faBell, 5)}
     </div>
   );
 
@@ -111,7 +114,15 @@ const RightGroup = ({ user }: MiddleProps) => {
   ) {
     return (
       <div className='group relative cursor-pointer'>
-        <ButtonLink className='mt-2 mr-2' variant='primary' href={href}>
+        <ButtonLink
+          className='mt-2 mr-2'
+          variant={
+            value == 0 || value === null || value === undefined
+              ? 'outline'
+              : 'primary'
+          }
+          href={href}
+        >
           <div className='inline-flex flex-row gap-2'>
             <FontAwesomeIcon
               icon={icon}

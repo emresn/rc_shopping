@@ -1,8 +1,10 @@
 import {
+  faCog,
   faHome,
   faInfoCircle,
   faMapMarkedAlt,
   faQuestionCircle,
+  faSortNumericDown,
   faStore,
   faThLarge,
   faUserShield,
@@ -33,28 +35,28 @@ export const productsMenuItems: MenuItemModel[] = [
 export const moreMenuItems: MenuItemModel[] = [
   {
     title: 'Help Center',
-    href: '/help-center',
+    href: '/more/help-center',
     icon: faQuestionCircle,
   },
   {
     title: 'Privacy Policy',
-    href: '/privacy-policy',
+    href: '/more/privacy-policy',
     icon: faUserShield,
   },
   {
     title: 'About Us',
-    href: '/about-us',
+    href: '/more/about-us',
     icon: faInfoCircle,
   },
   {
     title: 'Counter',
     href: '/counter',
-    icon: faInfoCircle,
+    icon: faSortNumericDown,
   },
   {
     title: 'Components',
     href: '/components',
-    icon: faInfoCircle,
+    icon: faCog,
   },
 ];
 
