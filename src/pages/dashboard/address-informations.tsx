@@ -4,26 +4,23 @@ import React from 'react';
 import ErrorMessage from '@/components/ErrorMessage';
 
 import DashboardLayout from '@/features/dashboard/DashboardLayout';
-import DashboardMain from '@/features/dashboard/DashboardMain';
 
 import Loading from '../../components/Loading';
 
-const Dashboard = () => {
+const AddressInformationsView = () => {
   const { user, isLoading } = useUser();
 
   return (
     <>
       {isLoading && <Loading />}
       {user && (
-        <DashboardLayout title='Dashboard'>
-          <DashboardMain />
-        </DashboardLayout>
+        <DashboardLayout title='Address Informations'>{<></>}</DashboardLayout>
       )}
     </>
   );
 };
 /* eslint-disable */
-export default withPageAuthRequired(Dashboard, {
+export default withPageAuthRequired(AddressInformationsView, {
   onRedirecting: () => {
     return <Loading />;
   },

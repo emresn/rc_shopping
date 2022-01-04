@@ -6,7 +6,12 @@ import PrimaryLink from '@/components/links/PrimaryLink';
 
 import { MenuItemModel } from '@/model/MenuItemModel';
 
-import { dashboardOrderItems, dashboardProfileItems } from './dashboardItems';
+import {
+  dashboardHomeMenuItem,
+  dashboardOrderItems,
+  dashboardProfileItems,
+  notificationMenuItem,
+} from '../../data/dashboardItems';
 
 const LeftMenu = () => {
   return (
@@ -14,7 +19,7 @@ const LeftMenu = () => {
       <div className='inline-flex flex-col w-full'>
         <h4>My Orders</h4>
         <div className='inline-flex flex-col gap-2 ml-2'>
-          {dashboardOrderItems.map((e, idx) => (
+          {[...dashboardOrderItems, notificationMenuItem].map((e, idx) => (
             <BuildLink item={e} key={idx} />
           ))}
         </div>
@@ -23,10 +28,11 @@ const LeftMenu = () => {
 
         <h4>My Profile</h4>
         <div className='inline-flex flex-col gap-2 ml-2'>
-          {dashboardProfileItems.map((e, idx) => (
+          {[...dashboardProfileItems, dashboardHomeMenuItem].map((e, idx) => (
             <BuildLink item={e} key={idx} />
           ))}
         </div>
+        <div className='h-32'></div>
       </div>
     </>
   );
@@ -38,16 +44,20 @@ interface LinkProps {
 
 const BuildLink = ({ item }: LinkProps) => {
   const router = useRouter();
-  const active = (e: string) => (router.pathname === e ? 'font-bold' : '');
+
+  const active = (e: string) =>
+    router.pathname === `/dashboard${e}`
+      ? 'font-bold underline text-primary-500'
+      : '';
 
   return (
     <div className='inline-flex flex-row gap-2'>
-      <span>
+      <span className={item.className}>
         <FontAwesomeIcon icon={item.icon} />
       </span>
       <PrimaryLink
         className={`font-medium text-black ${active(item.href)}`}
-        href={`/dashboard/${item.href}`}
+        href={`/dashboard${item.href}`}
         key={item.title}
       >
         <span>{item.title}</span>
