@@ -53,6 +53,8 @@ function buildColumn(title: string, value: string, order?: OrderModel) {
             ? 'Preparing'
             : order.isActive
             ? 'Validating'
+            : order.isCancelled
+            ? 'Cancelled'
             : 'Deactive'}
         </span>
       ) : (

@@ -1,6 +1,6 @@
 export type BannerModel = {
   id: string;
   alt: string;
-  path: string;
+  href: string;
   text: string;
 };

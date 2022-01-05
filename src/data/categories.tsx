@@ -12,42 +12,42 @@ import { CategoryModel } from '@/model/CategortModel';
 
 export const Computers: CategoryModel = {
   name: 'Computers',
-  href: '/products/computers',
+  href: '/products/Computers',
   icon: faLaptop,
 };
 
 export const Smartphones: CategoryModel = {
   name: 'Smartphones',
-  href: '/products/smartphones',
+  href: '/products/Smartphones',
   icon: faMobileAlt,
 };
 
 export const Electronics: CategoryModel = {
   name: 'Electronics',
-  href: '/products/electronics',
+  href: '/products/Electronics',
   icon: faMicrochip,
 };
 
 export const Keyboards: CategoryModel = {
   name: 'Keyboards',
-  href: '/products/keyboards',
+  href: '/products/Keyboards',
   icon: faKeyboard,
 };
 
 export const Mouses: CategoryModel = {
   name: 'Mouses',
-  href: '/products/mouses',
+  href: '/products/Mouses',
   icon: faMouse,
 };
 
 export const Headsets: CategoryModel = {
   name: 'Headsets',
-  href: '/products/headsets',
+  href: '/products/Headsets',
   icon: faHeadphonesAlt,
 };
 export const TVs: CategoryModel = {
   name: 'TVs',
-  href: '/products/tvs',
+  href: '/products/Tvs',
   icon: faTv,
 };
 

@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { banners } from '@/data/banners';
-import { ProductsExampleList } from '@/data/Products';
 
 import { Banner } from '@/components/Banner';
 import { CategoriesRibbon } from '@/components/CategoriesRibbon';
 import Seo from '@/components/Seo';
-import { ShowProduct } from '@/components/ShowProduct';
+
+import ProductsComp from '@/features/product/ProductsComp';
 
 export default function HomePage() {
   return (
@@ -16,30 +16,9 @@ export default function HomePage() {
       <div className='md:container md:mx-auto'>
         <CategoriesRibbon />
 
-        <div className='inline-flex flex-col py-4 w-full'>
+        <div className='inline-flex flex-col gap-2 py-4 w-full'>
           <h3>Hot Deals</h3>
-          <div className='grid grid-cols-4 gap-8'>
-            {ProductsExampleList.map((item, index) => (
-              <ShowProduct
-                product={item}
-                key={`${item.key}_${index}`}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className='inline-flex flex-col py-4 w-full'>
-          <h3>Popular Products</h3>
-          <div className='grid grid-cols-4 gap-8'>
-            {ProductsExampleList.map((item, index) => (
-              <ShowProduct
-                product={item}
-                key={`${item.key}_${index}`}
-                index={index}
-              />
-            ))}
-          </div>
+          <ProductsComp />
         </div>
       </div>
     </>

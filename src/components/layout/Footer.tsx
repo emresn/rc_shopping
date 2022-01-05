@@ -20,7 +20,7 @@ export const Footer = () => {
   return (
     <footer className='text-dark mt-4 bg-gray-200'>
       <div className='inline-flex justify-center w-full'>
-        <div className='inline-flex flex-row py-2 mx-auto w-4/5'>
+        <div className='inline-flex flex-wrap gap-4 py-2 mx-auto w-full lg:w-4/5'>
           <BuildColumn title='Products' categories={productsMenuItems} />
           <BuildColumn title='About Us' categories={moreMenuItems} />
           <BuildSocialMediaLinks />
@@ -123,9 +123,9 @@ const BuildSocialMediaLinks = () => {
 
 const BuildCompanyInfo = () => {
   return (
-    <div className='inline-flex flex-col gap-2 my-2 ml-auto font-medium'>
+    <div className='flex-col flex-wrap gap-2 my-2 ml-2 font-medium lg:ml-auto'>
       <h4>{companyRC.title}</h4>
-      <div className='inline-flex flex-col'>
+      <div className='flex-col flex-wrap'>
         <span>{companyRC.address}</span>
       </div>
       <div className='inline-flex flex-col my-2'>

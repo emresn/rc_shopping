@@ -10,6 +10,7 @@ export const orderData: OrderModel = {
     identityNo: '685-05-XXXX',
     name: 'Henry D. Gill',
     tel: '+1 252-224-5518',
+    email: 'RandyDSantos@rhyta.com',
     country: 'Pollocksville, USA',
     city: '',
     district: '',
@@ -22,6 +23,7 @@ export const orderData: OrderModel = {
     identityNo: '23523235',
     name: 'Jeffery D. Weatherspoon',
     tel: '+1 469-693-5437',
+    email: 'JaniceRFrancis@armyspy.com',
     country: 'Dallas, USA',
     city: '',
     district: '',
@@ -29,7 +31,7 @@ export const orderData: OrderModel = {
     apartment: '62',
     zipCode: 'TX 75247',
   },
-  createdAt: new Date(),
+  createdAt: '2022-01-02T02:51:17.289682+00:00',
   updatedAt: undefined,
   products: [
     {
@@ -47,6 +49,7 @@ export const orderData: OrderModel = {
   isOnDelivery: true,
   isPreparing: false,
   isCompleted: false,
+  isCancelled: false,
   track: {
     id: '1Z50F3424043761193',
     trackNo: '1Z50F3424043761193',

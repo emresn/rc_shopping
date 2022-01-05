@@ -4,7 +4,7 @@ import { Electronics, Smartphones } from './categories';
 
 export const exampleProduct: ProductModel = {
   category: Electronics,
-  createdAt: new Date('2022-01-02T02:51:17.289682+00:00'),
+  createdAt: '2022-01-02T02:51:17.289682+00:00',
   description: `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id ultricies augue. Aenean feugiat lobortis ipsum, nec mattis nulla rutrum quis. 
 Sed tempor nec ante sit amet ultricies. Curabitur a elit suscipit, ultrices ipsum in, vestibulum magna. 
@@ -20,13 +20,11 @@ Suspendisse eu blandit diam, nec ultrices urna. Nullam finibus dictum interdum. 
   images: [
     {
       id: '3',
-      path: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813411/products/electronics1_ig5mgl.jpg',
-      productId: 'd6e79181-2c6a-4be4-9c82-91c1ac3d83ad',
+      href: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813411/products/electronics1_ig5mgl.jpg',
     },
     {
       id: '4',
-      path: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813411/products/transistors_rnpto7.jpg',
-      productId: 'd6e79181-2c6a-4be4-9c82',
+      href: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813411/products/transistors_rnpto7.jpg',
     },
   ],
   title: '3x Transistors 552',
@@ -39,7 +37,7 @@ Suspendisse eu blandit diam, nec ultrices urna. Nullam finibus dictum interdum. 
 
 export const exampleProduct2: ProductModel = {
   category: Smartphones,
-  createdAt: new Date('2022-01-02T02:51:17.289682+00:00'),
+  createdAt: '2022-01-02T02:51:17.289682+00:00',
   description: `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis cursus nulla, vitae rutrum massa. Donec euismod purus quis tellus venenatis, a dictum ante rutrum. Morbi bibendum elit mauris, vitae porta nisi sollicitudin vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sed vehicula est. Donec eget justo nec massa hendrerit ultricies non sit amet ligula. Sed vitae pellentesque diam. Maecenas ac nunc mi. Donec ut felis sem. Praesent et iaculis felis. Aenean elementum viverra arcu, id elementum lectus tempor et. Ut in purus eu ligula dictum malesuada. Etiam semper, nisl vel cursus gravida, libero magna tempor mauris, sed egestas justo lacus eu nunc. Sed at ipsum mollis, pharetra nulla non, commodo mauris. In imperdiet scelerisque vulputate.
 
@@ -52,8 +50,7 @@ Suspendisse ultrices porttitor justo, ut ornare quam bibendum maximus. Phasellus
   images: [
     {
       id: '8',
-      path: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813412/products/smartphone3_wjsc1j.jpg',
-      productId: '56f58150-f0d2-463e-96cc-2abbbec511f3',
+      href: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1624813412/products/smartphone3_wjsc1j.jpg',
     },
   ],
   title: 'Smartphone X',

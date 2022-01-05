@@ -7,13 +7,14 @@ export type OrderModel = {
   orderNo: string;
   sender: PersonModel;
   receiver: PersonModel;
-  createdAt: Date;
-  updatedAt?: Date;
+  createdAt: string;
+  updatedAt?: string;
   products: ProductCountModel[];
   isActive: boolean;
   isOnDelivery: boolean;
   isPreparing: boolean;
   isCompleted: boolean;
+  isCancelled: boolean;
   track?: TrackModel;
   vat: number;
   totalPrice: number;

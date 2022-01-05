@@ -2,7 +2,7 @@ import { CompanyModel } from '@/model/CompanyModel';
 
 export const companyRC: CompanyModel = {
   id: '1',
-  logo: 'https://rc-shopping.vercel.app/_next/image?url=%2Fassets%2Fimg%2Flogo_transparent.png&w=1920&q=75',
+  logo: 'https://res.cloudinary.com/dc0uxmplw/image/upload/v1641295137/rc_shopping/logo_transparent.png',
   description: 'A shopping company',
   title: 'RC Shopping',
   email: 'contact.emresn@gmail.com',

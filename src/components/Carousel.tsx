@@ -36,7 +36,7 @@ export const Carousel = ({ item, className }: Props) => {
                   <NextImage
                     priority
                     className='w-full'
-                    src={e.path}
+                    src={e.href}
                     alt={e.id}
                     width='100'
                     height='100'

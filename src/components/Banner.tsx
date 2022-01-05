@@ -26,9 +26,9 @@ export const Banner = ({ banners }: Props) => {
               alt={banner.alt}
               width='100%'
               height='20'
-              src={banner.path}
+              src={banner.href}
             />
-            <div className='text absolute right-32 bottom-32 text-sm sm:text-xl md:text-xl lg:text-3xl xl:text-4xl'>
+            <div className='text hidden right-32 bottom-32 text-sm sm:absolute sm:text-xl md:text-xl lg:text-3xl xl:text-4xl'>
               <span className='p-2 bg-white rounded-2xl'>{banner.text}</span>
             </div>
           </div>
@@ -75,7 +75,7 @@ export const Banner = ({ banners }: Props) => {
 
   function buildDots() {
     return (
-      <div className='inline-flex absolute inset-x-0 bottom-0 flex-row gap-1 justify-center items-center p-3 cursor-pointer'>
+      <div className='inline-flex absolute inset-x-0 bottom-0 flex-row flex-shrink-0 gap-1 justify-center items-center p-3 cursor-pointer'>
         {Array.from(banners.keys()).map((idx) => (
           <span
             key={idx}

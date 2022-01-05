@@ -98,3 +98,10 @@
     background-size: 0 2px, 100% 2px;
   }
 }
+
+html {
+  background-color: rgb(243 244 246);
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}

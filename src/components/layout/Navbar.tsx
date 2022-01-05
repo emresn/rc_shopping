@@ -60,7 +60,7 @@ interface MiddleProps {
 
 const MiddleGroup = ({ user }: MiddleProps) => {
   return (
-    <div className='flex flex-row gap-6 cursor-pointer'>
+    <div className='hidden flex-row flex-wrap gap-6 cursor-pointer md:flex'>
       {user
         ? userMenuItems.map((e) => <NavLink menuItem={e} key={e.title} />)
         : guestMenuItems.map((e) => <NavLink menuItem={e} key={e.title} />)}

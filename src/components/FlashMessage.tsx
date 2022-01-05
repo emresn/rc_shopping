@@ -1,17 +1,31 @@
-import Link from 'next/link';
 import React from 'react';
 
-const FlashMessage = () => {
+interface Props {
+  isError?: boolean;
+  isWarning?: boolean;
+  isSuccess?: boolean;
+  message: string;
+}
+
+const FlashMessage = ({
+  isError = false,
+  isWarning = false,
+  isSuccess = false,
+  message,
+}: Props) => {
+  const className = isError
+    ? 'bg-red-200'
+    : isWarning
+    ? 'bg-yellow-200'
+    : isSuccess
+    ? 'bg-green-200'
+    : 'bg-white';
   return (
-    <Link href='/dashboard/messages' passHref>
-      <div className='p-2 w-full text-center bg-yellow-200 rounded-md cursor-pointer'>
-        <span className=''>
-          {'You have '}
-          <span className='font-bold'>{`a unread `}</span>
-          {'notification'}
-        </span>
-      </div>
-    </Link>
+    <div
+      className={`${className} cursor-pointer p-2 rounded-md text-center w-full`}
+    >
+      <span className=''>{message}</span>
+    </div>
   );
 };
 
