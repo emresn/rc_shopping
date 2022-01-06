@@ -3,6 +3,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
 import { BannerModel } from '@/model/BannerModel';
@@ -20,18 +21,12 @@ export const Banner = ({ banners }: Props) => {
     <>
       <div className='from-slate-300 to-slate-100 z--10 relative m-auto w-full bg-gradient-to-r'>
         {banners.map((banner, idx) => (
-          <div className={idx === activeTab ? '' : 'hidden'} key={idx}>
-            <NextImage
-              priority
-              alt={banner.alt}
-              width='100%'
-              height='20'
-              src={banner.href}
-            />
-            <div className='text absolute right-32 bottom-32 invisible text-sm sm:text-xl md:text-xl lg:visible lg:text-3xl xl:text-4xl'>
-              <span className='p-2 bg-white rounded-2xl'>{banner.text}</span>
-            </div>
-          </div>
+          <BuildBannerImage
+            idx={idx}
+            key={idx}
+            isVisible={activeTab === idx ? true : false}
+            banner={banner}
+          />
         ))}
 
         {buildArrow({ isLeft: true })}
@@ -90,4 +85,35 @@ export const Banner = ({ banners }: Props) => {
       </div>
     );
   }
+};
+
+interface BannerImageProps {
+  idx: number;
+  banner: BannerModel;
+  isVisible: boolean;
+}
+
+const BuildBannerImage = ({ idx, isVisible, banner }: BannerImageProps) => {
+  return (
+    <motion.div
+      animate={{
+        opacity: isVisible ? 1 : 0,
+      }}
+      transition={{ duration: 0.7 }}
+      key={idx}
+    >
+      <div className={isVisible ? '' : 'hidden'} key={idx}>
+        <NextImage
+          priority
+          alt={banner.alt}
+          width='100%'
+          height='20'
+          src={banner.href}
+        />
+        <div className='text absolute right-32 bottom-32 invisible text-sm sm:text-xl md:text-xl lg:visible lg:text-3xl xl:text-4xl'>
+          <span className='p-2 bg-white rounded-2xl'>{banner.text}</span>
+        </div>
+      </div>
+    </motion.div>
+  );
 };

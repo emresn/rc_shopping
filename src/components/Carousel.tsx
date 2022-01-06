@@ -3,6 +3,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
 import { ProductModel } from '@/model/ProductModel';
@@ -32,16 +33,24 @@ export const Carousel = ({ item, className }: Props) => {
           <div className='relative'>
             {item.images !== undefined &&
               item.images.map((e, idx) => (
-                <div className={idx === activeTab ? '' : 'hidden'} key={idx}>
-                  <NextImage
-                    priority
-                    className='w-full'
-                    src={e.href}
-                    alt={e.id}
-                    width='100'
-                    height='100'
-                  />
-                </div>
+                <motion.div
+                  animate={{
+                    opacity: idx === activeTab ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.7 }}
+                  key={idx}
+                >
+                  <div className={idx === activeTab ? '' : 'hidden'} key={idx}>
+                    <NextImage
+                      priority
+                      className='w-full'
+                      src={e.href}
+                      alt={e.id}
+                      width='100'
+                      height='100'
+                    />
+                  </div>
+                </motion.div>
               ))}
 
             {isHaveMultiImages && buildArrow({ isLeft: true })}

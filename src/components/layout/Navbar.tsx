@@ -17,7 +17,6 @@ import { useAppDispatch } from '@/redux/hooks';
 
 import { NavLink } from './navbarWidgets/NavLink';
 import ButtonLink from '../links/ButtonLink';
-import Loading from '../Loading';
 import NextImage from '../NextImage';
 
 export const Navbar = () => {
@@ -76,14 +75,10 @@ const MiddleGroup = ({ user }: MiddleProps) => {
   );
 };
 
-const RightGroup = ({ user, isLoading }: MiddleProps) => {
+const RightGroup = ({ user }: MiddleProps) => {
   return (
     <div className='hidden justify-end items-center space-x-2 md:flex md:flex-1 lg:w-0'>
-      {isLoading ? (
-        <>
-          <Loading />
-        </>
-      ) : user ? (
+      {user ? (
         <ButtonLink className='mt-2' variant='outline' href='/api/auth/logout'>
           <div className='inline-flex flex-row gap-2'>
             <FontAwesomeIcon

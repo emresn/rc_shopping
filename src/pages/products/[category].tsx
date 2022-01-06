@@ -14,7 +14,8 @@ import {
 import { generateHrefFromCategoryModel } from '@/helpers/generateHrefFromCategoryModel';
 import { CategoryModelFromString } from '@/model/CategortModel';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { AppState } from '@/redux/store';
+
+import { AppState } from '../../redux/store';
 
 const CategoryView = () => {
   const router = useRouter();
