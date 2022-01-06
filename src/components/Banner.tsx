@@ -28,7 +28,7 @@ export const Banner = ({ banners }: Props) => {
               height='20'
               src={banner.href}
             />
-            <div className='text hidden right-32 bottom-32 text-sm sm:absolute sm:text-xl md:text-xl lg:text-3xl xl:text-4xl'>
+            <div className='text absolute right-32 bottom-32 invisible text-sm sm:text-xl md:text-xl lg:visible lg:text-3xl xl:text-4xl'>
               <span className='p-2 bg-white rounded-2xl'>{banner.text}</span>
             </div>
           </div>
@@ -79,7 +79,7 @@ export const Banner = ({ banners }: Props) => {
         {Array.from(banners.keys()).map((idx) => (
           <span
             key={idx}
-            className={`p-3 rounded-full  ${
+            className={`p-1 lg:p-3 rounded-full  ${
               activeTab == idx ? ' bg-dark' : 'bg-gray-300'
             }`}
             onClick={() => {

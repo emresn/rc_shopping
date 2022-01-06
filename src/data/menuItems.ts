@@ -4,7 +4,6 @@ import {
   faInfoCircle,
   faMapMarkedAlt,
   faQuestionCircle,
-  faSortNumericDown,
   faStore,
   faThLarge,
   faUserShield,
@@ -47,11 +46,6 @@ export const moreMenuItems: MenuItemModel[] = [
     title: 'About Us',
     href: '/more/about-us',
     icon: faInfoCircle,
-  },
-  {
-    title: 'Counter',
-    href: '/counter',
-    icon: faSortNumericDown,
   },
   {
     title: 'Components',

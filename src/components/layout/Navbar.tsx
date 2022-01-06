@@ -12,6 +12,9 @@ import React from 'react';
 
 import { guestMenuItems, userMenuItems } from '@/data/menuItems';
 
+import { setInitial } from '@/features/home/homeSlice';
+import { useAppDispatch } from '@/redux/hooks';
+
 import { NavLink } from './navbarWidgets/NavLink';
 import ButtonLink from '../links/ButtonLink';
 import Loading from '../Loading';
@@ -35,8 +38,13 @@ export const Navbar = () => {
 };
 
 const LeftGroup = () => {
+  const dispatch = useAppDispatch();
+
   return (
-    <div className='inline-flex justify-start items-center lg:flex-1 lg:w-0 xl:w-20'>
+    <div
+      className='inline-flex justify-start items-center lg:flex-1 lg:w-0 xl:w-20'
+      onClick={() => dispatch(setInitial())}
+    >
       <Link href='/'>
         <a className='inline-flex'>
           <NextImage

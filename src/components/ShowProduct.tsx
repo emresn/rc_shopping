@@ -17,6 +17,7 @@ export const ShowProduct = ({ product, index }: Props) => {
         {product.images != null && (
           <NextImage
             className='w-full group-hover:opacity-60'
+            priority
             width='200'
             height='200'
             key={`${product.key}--${index}`}

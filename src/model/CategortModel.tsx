@@ -10,6 +10,8 @@ import {
   TVs,
 } from '@/data/categories';
 
+import { CategoryEnums } from '@/enums/categories';
+
 export type CategoryModel = {
   name: string;
   href: string;
@@ -18,19 +20,19 @@ export type CategoryModel = {
 
 export function CategoryModelFromString(name: string) {
   switch (name) {
-    case 'Computers':
+    case CategoryEnums.computers:
       return Computers;
-    case 'Smartphones':
+    case CategoryEnums.smartphones:
       return Smartphones;
-    case 'Electronics':
+    case CategoryEnums.electronics:
       return Electronics;
-    case 'Keyboards':
+    case CategoryEnums.keyboards:
       return Keyboards;
-    case 'Mouses':
+    case CategoryEnums.mouses:
       return Mouses;
-    case 'Headsets':
+    case CategoryEnums.headsets:
       return Headsets;
-    case 'TVs':
+    case CategoryEnums.tvs:
       return TVs;
 
     default:

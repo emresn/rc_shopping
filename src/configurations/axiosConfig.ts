@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 export function axiosConfig(accessToken: string, data: string) {
-  if (accessToken == '') {
+  if (accessToken === '' || accessToken === 'public') {
     return {
       method: 'post',
       url: 'https://prime-tarpon-84.hasura.app/v1/graphql',

@@ -1,21 +1,24 @@
-import { getAccessToken } from '@auth0/nextjs-auth0';
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { productsQuery } from './queries/getProduct';
+import { initialRequestOptions } from '@/data/requestOptionsData';
+
+import { RequestOptions } from '@/model/RequestOptions';
+
 import { axiosConfig } from '../../configurations/axiosConfig';
-import { RequestOptions } from '../../model/RequestOptions';
+import { getProductsQuery } from '../../queries/getProductsQuery';
 
 /* eslint-disable */
 export async function fetchProducts(
   req: NextApiRequest,
   res: NextApiResponse<any>,
-  options: RequestOptions
+  options?: RequestOptions
 ): Promise<{ [key: string]: any }> {
-  const query = productsQuery(options);
+  const query = getProductsQuery(options ? options : initialRequestOptions);
   // console.log(query);
 
-  const { accessToken } = await getAccessToken(req, res, { refresh: true });
+  // const { accessToken } = await getAccessToken(req, res, { refresh: true });
+  const accessToken = 'public';
   const data = JSON.stringify({
     query: query,
     variables: {},

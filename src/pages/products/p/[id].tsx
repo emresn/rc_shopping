@@ -34,7 +34,7 @@ const ProductView = () => {
         <ArrowLink
           direction='left'
           className='text-xl'
-          href={`/products/${item && item.category.name}`}
+          href={`./products/${item && item.category.name}`}
         >
           Back
         </ArrowLink>

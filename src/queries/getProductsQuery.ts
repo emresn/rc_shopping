@@ -1,6 +1,6 @@
 import { RequestOptions } from '@/model/RequestOptions';
 
-export function productsQuery(options: RequestOptions) {
+export function getProductsQuery(options: RequestOptions) {
   const orderStr = `order_by: {${options.sort} : ${options.direction} }`;
   const limitStr = options.limit ? `,limit: ${options.limit}` : '';
   const offsetStr = options.offset ? `,offset: ${options.offset}` : '';
@@ -8,7 +8,7 @@ export function productsQuery(options: RequestOptions) {
     ? `, where: {category: {name: {_eq: "${options.category}"}}}`
     : '';
 
-  return `
+  const query = `
   query GetProducts {
     product_product(${orderStr} ${limitStr} ${offsetStr} ${categoryStr}) {
       category {
@@ -37,4 +37,7 @@ export function productsQuery(options: RequestOptions) {
     }
   }
   `;
+  // console.log(query);
+
+  return query;
 }

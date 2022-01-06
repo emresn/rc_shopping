@@ -13,7 +13,7 @@ export const NavLink = ({ menuItem }: Props) => {
   return menuItem.isExpanded ? (
     <PopoverMenu menuItem={menuItem} />
   ) : (
-    <Link href={menuItem.href}>
+    <Link href={menuItem.href} key={menuItem.href}>
       <a className='font-medium'>
         <div className='inline-flex flex-row items-center hover:text-gray-600'>
           <span className='mr-2 text-indigo-700'>
