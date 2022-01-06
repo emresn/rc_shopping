@@ -9,15 +9,22 @@ import { Carousel } from '@/components/Carousel';
 import ButtonLink from '@/components/links/ButtonLink';
 import Loading from '@/components/Loading';
 
+import { homeProductsAsync } from '@/features/home/homeSlice';
+import { useAppDispatch } from '@/redux/hooks';
 import { AppState } from '@/redux/store';
 
 const ProductView = () => {
   const router = useRouter();
-  const { id } = router.query;
-  const splitted = `${id}`.split('--');
-  const key = splitted[0];
+  const dispatch = useAppDispatch();
+
+  const { key } = router.query;
 
   const state = useSelector((state: AppState) => state);
+
+  if (state.home.status === 'initial') {
+    dispatch(homeProductsAsync(router.pathname));
+  }
+
   const product = [...state.category.products, ...state.home.products].filter(
     (e) => e.key === key
   )[0];
@@ -30,7 +37,7 @@ const ProductView = () => {
   return (
     <div className='relative my-4 h-screen md:container md:mx-auto'>
       <Button
-        className='absolute -top-4 -right-4 rounded-lg'
+        className='absolute -top-4 -right-4 bg-opacity-40 rounded-lg'
         variant='light'
         onClick={() => router.back()}
       >

@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
+import { mdImageResize } from '@/constants/imageResizeRules';
+import { generateResizeImageHref } from '@/helpers/generateResizeImageHref';
 import { ProductModel } from '@/model/ProductModel';
 
 import NextImage from './NextImage';
@@ -44,7 +46,7 @@ export const Carousel = ({ item, className }: Props) => {
                     <NextImage
                       priority
                       className='w-full'
-                      src={e.href}
+                      src={generateResizeImageHref(e.href, mdImageResize)}
                       alt={e.id}
                       width='100'
                       height='100'

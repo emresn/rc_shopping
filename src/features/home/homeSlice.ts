@@ -21,8 +21,10 @@ const initialState: HomeState = {
 /* eslint-disable */
 export const homeProductsAsync = createAsyncThunk(
   'HomeState/fetchProducts',
-  async () => {
-    const response = await fetch('../api/products').then((data) => data.json());
+  async (pathName: string) => {
+    const response = await fetch(
+      pathName === '/' ? '../api/products' : '../../api/products'
+    ).then((data) => data.json());
 
     const jsonData: Array<{ [key: string]: any }> =
       response.data.data.product_product;

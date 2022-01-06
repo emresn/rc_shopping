@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 
+import { thumbnailResize } from '@/constants/imageResizeRules';
+import { generateResizeImageHref } from '@/helpers/generateResizeImageHref';
 import { ProductModel } from '@/model/ProductModel';
 
 import NextImage from './NextImage';
@@ -11,6 +13,9 @@ interface Props {
 }
 
 export const ShowProduct = ({ product, index }: Props) => {
+  const imageUrl =
+    product.images &&
+    generateResizeImageHref(product.images[0].href, thumbnailResize);
   return (
     <Link href={`/products/p/${product.key}`} passHref>
       <div className='group inline-flex flex-col rounded-lg border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-200 hover:shadow-xl'>
@@ -21,7 +26,7 @@ export const ShowProduct = ({ product, index }: Props) => {
             width='200'
             height='200'
             key={`${product.key}--${index}`}
-            src={product.images[0].href}
+            src={imageUrl ?? product.images[0].href}
             alt={product.images[0].id}
           />
         )}

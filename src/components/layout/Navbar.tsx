@@ -47,6 +47,7 @@ const LeftGroup = () => {
       <Link href='/'>
         <a className='inline-flex'>
           <NextImage
+            priority
             useSkeleton
             src='/assets/img/logo_transparent.png'
             width='80'
