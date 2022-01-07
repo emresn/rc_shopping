@@ -50,6 +50,7 @@ const CartView = () => {
                         <div className=''>
                           {e.product.images && (
                             <NextImage
+                              useSkeleton
                               className='group-hover:brightness-90'
                               width='150'
                               height='150'

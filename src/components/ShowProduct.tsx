@@ -28,6 +28,7 @@ export const ShowProduct = ({ product, index }: Props) => {
         <div className='inline-flex flex-col w-full h-full'>
           {product.images != null && (
             <NextImage
+              useSkeleton
               className='w-full group-hover:opacity-60'
               priority
               width='200'

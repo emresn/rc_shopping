@@ -104,6 +104,7 @@ const BuildBannerImage = ({ idx, isVisible, banner }: BannerImageProps) => {
     >
       <div className={isVisible ? '' : 'hidden'} key={idx}>
         <NextImage
+          useSkeleton
           priority
           alt={banner.alt}
           width='100%'

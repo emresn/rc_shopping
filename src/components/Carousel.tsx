@@ -44,6 +44,7 @@ export const Carousel = ({ item, className }: Props) => {
                 >
                   <div className={idx === activeTab ? '' : 'hidden'} key={idx}>
                     <NextImage
+                      useSkeleton
                       priority
                       className='w-full'
                       src={generateResizeImageHref(e.href, mdImageResize)}
