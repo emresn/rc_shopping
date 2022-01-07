@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import FlashMessage from '@/components/FlashMessage';
 import Loading from '@/components/Loading';
 import ProductsComp from '@/components/ProductsComp';
 
@@ -14,10 +14,11 @@ import { AppState } from '@/redux/store';
 
 const ProductsView = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const state = useSelector((state: AppState) => state.home);
 
   if (state.status === 'initial') {
-    dispatch(homeProductsAsync());
+    dispatch(homeProductsAsync(router.pathname));
   }
 
   const products = useAppSelector(selectHomeProducts);
@@ -27,7 +28,7 @@ const ProductsView = () => {
       {state.status === 'loading' || state.status === 'initial' ? (
         <Loading />
       ) : state.status === 'failed' ? (
-        <FlashMessage message='Error' />
+        <></>
       ) : (
         <ProductsComp products={products}></ProductsComp>
       )}

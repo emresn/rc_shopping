@@ -6,7 +6,6 @@ import { banners } from '@/data/banners';
 
 import { Banner } from '@/components/Banner';
 import { CategoriesRibbon } from '@/components/CategoriesRibbon';
-import FlashMessage from '@/components/FlashMessage';
 import Loading from '@/components/Loading';
 import ProductsComp from '@/components/ProductsComp';
 import Seo from '@/components/Seo';
@@ -40,7 +39,7 @@ export default function HomePage() {
           {state.status === 'loading' || state.status === 'initial' ? (
             <Loading />
           ) : state.status === 'failed' ? (
-            <FlashMessage message='Error' />
+            <></>
           ) : (
             <ProductsComp products={products}></ProductsComp>
           )}

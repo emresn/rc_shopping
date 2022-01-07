@@ -1,5 +1,6 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 
+import cartReducer from '../features/cart/cartSlice';
 import categoryReducer from '../features/category/categorySlice';
 import homeReducer from '../features/home/homeSlice';
 
@@ -8,6 +9,7 @@ export function makeStore() {
     reducer: {
       home: homeReducer,
       category: categoryReducer,
+      cart: cartReducer,
     },
   });
 }

@@ -1,15 +1,17 @@
 import { faArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 
 import Button from '@/components/buttons/Button';
 import { Carousel } from '@/components/Carousel';
-import ButtonLink from '@/components/links/ButtonLink';
 import Loading from '@/components/Loading';
 
+import { addCartItem } from '@/features/cart/cartSlice';
 import { homeProductsAsync } from '@/features/home/homeSlice';
+import { ProductCountModelFromProduct } from '@/model/ProductCountModel';
 import { useAppDispatch } from '@/redux/hooks';
 import { AppState } from '@/redux/store';
 
@@ -28,6 +30,23 @@ const ProductView = () => {
   const product = [...state.category.products, ...state.home.products].filter(
     (e) => e.key === key
   )[0];
+
+  useEffect(() => {
+    const findProductCount = () => {
+      let idx;
+
+      if (state.cart.cartItems.length > 0) {
+        idx = state.cart.cartItems.findIndex(
+          (e) => e.product.id === product.id
+        );
+
+        idx !== undefined &&
+          idx !== -1 &&
+          setCount(state.cart.cartItems[idx].count);
+      }
+    };
+    findProductCount();
+  }, [product.id, state.cart.cartItems]);
 
   const [count, setCount] = useState(1);
 
@@ -76,14 +95,22 @@ const ProductView = () => {
 
         <div className='inline-flex flex-row items-end'>
           <div className='flex-auto'></div>
-          <ButtonLink className='mr-0' href={'#'}>
+          <Button
+            onClick={() => {
+              dispatch(
+                addCartItem([ProductCountModelFromProduct(product, count)])
+              );
+              toast.success('Added');
+            }}
+            className='mr-0'
+          >
             <div className='inline-flex flex-row gap-2'>
               <span>
                 <FontAwesomeIcon icon={faShoppingCart} />
               </span>
               <span>Add to cart</span>
             </div>
-          </ButtonLink>
+          </Button>
         </div>
       </div>
     );

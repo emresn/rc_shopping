@@ -9,11 +9,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { guestMenuItems, userMenuItems } from '@/data/menuItems';
 
 import { setInitial } from '@/features/home/homeSlice';
 import { useAppDispatch } from '@/redux/hooks';
+import { AppState } from '@/redux/store';
 
 import { NavLink } from './navbarWidgets/NavLink';
 import ButtonLink from '../links/ButtonLink';
@@ -60,13 +62,13 @@ const LeftGroup = () => {
   );
 };
 
-interface MiddleProps {
+interface NavProps {
   user?: UserProfile;
   isLoading?: boolean;
   error?: Error;
 }
 
-const MiddleGroup = ({ user }: MiddleProps) => {
+const MiddleGroup = ({ user }: NavProps) => {
   return (
     <div className='hidden flex-row flex-wrap gap-6 cursor-pointer md:flex'>
       {user
@@ -76,7 +78,9 @@ const MiddleGroup = ({ user }: MiddleProps) => {
   );
 };
 
-const RightGroup = ({ user }: MiddleProps) => {
+const RightGroup = ({ user }: NavProps) => {
+  const cartState = useSelector((state: AppState) => state.cart);
+
   return (
     <div className='hidden justify-end items-center space-x-2 md:flex md:flex-1 lg:w-0'>
       {user ? (
@@ -105,13 +109,17 @@ const RightGroup = ({ user }: MiddleProps) => {
         </>
       )}
 
-      {buildNotifierButton('/cart', faShoppingCart, 1)}
+      {buildCartAndNotifierButton(
+        '/cart',
+        faShoppingCart,
+        cartState.cartItems.length
+      )}
 
-      {user && buildNotifierButton('/notifications', faBell, 5)}
+      {user && buildCartAndNotifierButton('/notifications', faBell, 5)}
     </div>
   );
 
-  function buildNotifierButton(
+  function buildCartAndNotifierButton(
     href: string,
     icon: IconDefinition,
     value?: number

@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import FlashMessage from '@/components/FlashMessage';
 import Loading from '@/components/Loading';
 import ProductsComp from '@/components/ProductsComp';
 import Seo from '@/components/Seo';
@@ -45,7 +44,7 @@ const CategoryView = () => {
           {state.status === 'loading' || state.status === 'initial' ? (
             <Loading />
           ) : state.status === 'failed' ? (
-            <FlashMessage message='Error' />
+            <></>
           ) : (
             <ProductsComp products={products}></ProductsComp>
           )}
