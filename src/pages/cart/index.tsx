@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Seo from '@/components/Seo';
 
+import BuildCountButtonsCell from '@/features/cart/subviews/buildCountButtonsCell';
 import { BuildHeadersRow } from '@/features/cart/subviews/BuildHeadersRow';
 import BuildImageCell from '@/features/cart/subviews/buildImageCell';
 import { buildPlainLink } from '@/features/cart/subviews/buildPlainLink';
@@ -39,7 +40,7 @@ const CartView = () => {
           {buildPlainLink(item, item.product.subtitle ?? '')}
         </div>
         <div className='inline-flex flex-row gap-4 justify-center items-center w-3/12'>
-          <BuildTotalPriceCell item={item} />
+          <BuildCountButtonsCell item={item} idx={idx} />
         </div>
         <span className='w-1/12 text-center'>{`${item.product.price} $`}</span>
         <div className='relative w-1/12 text-center'>
