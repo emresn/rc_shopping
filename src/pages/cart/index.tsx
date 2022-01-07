@@ -1,26 +1,53 @@
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Button from '@/components/buttons/Button';
-import NextImage from '@/components/NextImage';
 import Seo from '@/components/Seo';
 
-import { thumbnailResize } from '@/constants/imageResizeRules';
-import {
-  decrementCartItem,
-  incrementCartItem,
-  removeCartItem,
-} from '@/features/cart/cartSlice';
-import { generateResizeImageHref } from '@/helpers/generateResizeImageHref';
-import { useAppDispatch } from '@/redux/hooks';
+import { BuildHeadersRow } from '@/features/cart/subviews/BuildHeadersRow';
+import BuildImageCell from '@/features/cart/subviews/buildImageCell';
+import { buildPlainLink } from '@/features/cart/subviews/buildPlainLink';
+import BuildTotalPriceCell from '@/features/cart/subviews/buildTotalPriceCell';
+import { ProductCountModel } from '@/model/ProductCountModel';
 import { AppState } from '@/redux/store';
 
 const CartView = () => {
   const state = useSelector((state: AppState) => state.cart);
-  const dispatch = useAppDispatch();
+
+  const mainColClass =
+    'bg-white flex-col inline-flex rounded-lg shadow-md w-full';
+  const rowClass =
+    'flex-row gap-4 inline-flex items-center justify-between p-3 w-full';
+
+  interface BuildItemRowProps {
+    idx: number;
+    item: ProductCountModel;
+    rowClass: string;
+  }
+  const BuildItemRow = ({ idx, item, rowClass }: BuildItemRowProps) => {
+    return (
+      <div
+        key={idx}
+        className={`${rowClass} font-medium group text-md hover:bg-gray-200`}
+      >
+        <div className='w-2/12'>
+          <BuildImageCell item={item} />
+        </div>
+        <div className='w-2/12'>
+          {buildPlainLink(item, item.product.title, true)}
+        </div>
+        <div className='w-3/12 text-center'>
+          {buildPlainLink(item, item.product.subtitle ?? '')}
+        </div>
+        <div className='inline-flex flex-row gap-4 justify-center items-center w-3/12'>
+          <BuildTotalPriceCell item={item} />
+        </div>
+        <span className='w-1/12 text-center'>{`${item.product.price} $`}</span>
+        <div className='relative w-1/12 text-center'>
+          <BuildTotalPriceCell item={item} />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -29,98 +56,24 @@ const CartView = () => {
       <div className='md:container md:mx-auto'>
         <div className='inline-flex flex-col gap-2 py-4 w-full'>
           <h3>My Cart</h3>
-          <div className='inline-flex flex-col w-full bg-white rounded-lg shadow-md'>
+          <div className={mainColClass}>
             {state.cartItems.length > 0 ? (
               <>
-                <div className='inline-flex flex-row gap-4 justify-between p-3 w-full'>
-                  <div className='w-2/12'></div>
-                  <h4 className='w-2/12'>Product</h4>
-                  <h4 className='w-3/12 text-center'>Details</h4>
-                  <h4 className='w-3/12 text-center'>Quantity</h4>
-                  <h4 className='w-1/12 text-center'>Unit Price</h4>
-                  <h4 className='w-1/12 text-right'>Total Price</h4>
-                </div>
+                <BuildHeadersRow rowClass={rowClass} />
                 <>
                   {state.cartItems.map((e, idx) => (
-                    <div
+                    <BuildItemRow
+                      idx={idx}
+                      item={e}
+                      rowClass={rowClass}
                       key={idx}
-                      className='group text-md inline-flex flex-row gap-4 justify-between items-center p-3 w-full font-medium hover:bg-gray-200'
-                    >
-                      <div className='w-2/12'>
-                        <div className=''>
-                          {e.product.images && (
-                            <NextImage
-                              useSkeleton
-                              className='group-hover:brightness-90'
-                              width='150'
-                              height='150'
-                              alt={e.product.images[0].id}
-                              src={generateResizeImageHref(
-                                e.product.images[0].href,
-                                thumbnailResize
-                              )}
-                            ></NextImage>
-                          )}
-                        </div>
-                      </div>
-                      <div className='w-2/12'>
-                        <Link href={`../products/p/${e.product.key}`}>
-                          <a>
-                            <span className='text-primary-500'>
-                              {e.product.title}
-                            </span>
-                          </a>
-                        </Link>
-                      </div>
-                      <div className='w-3/12 text-center'>
-                        <Link href={`../products/p/${e.product.key}`}>
-                          <a>
-                            <span className=''>{e.product.subtitle}</span>
-                          </a>
-                        </Link>
-                      </div>
-                      <div className='inline-flex flex-row gap-4 justify-center items-center w-3/12'>
-                        <Button
-                          variant='light'
-                          className='rounded-full'
-                          onClick={() => dispatch(decrementCartItem(idx))}
-                        >
-                          -
-                        </Button>
-                        <span className='text-right'>{e.count}</span>
-                        <Button
-                          variant='light'
-                          className='rounded-full'
-                          onClick={() => dispatch(incrementCartItem(idx))}
-                        >
-                          +
-                        </Button>
-                      </div>
-
-                      <span className='w-1/12 text-center'>
-                        {`${e.product.price} $`}
-                      </span>
-                      <div className='relative w-1/12 text-center'>
-                        <span> {`${e.product.price * e.count} $`}</span>
-
-                        <button
-                          className='absolute top-0 right-0 text-red-500'
-                          onClick={() =>
-                            dispatch(removeCartItem({ id: e.product.id }))
-                          }
-                        >
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
-                      </div>
-                    </div>
+                    />
                   ))}
                 </>
               </>
             ) : (
               <>
-                <div className='inline-flex flex-row gap-4 justify-between p-3 w-full'>
-                  Your cart is empty
-                </div>
+                <div className={rowClass}>Your cart is empty</div>
               </>
             )}
           </div>
