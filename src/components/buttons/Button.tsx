@@ -33,7 +33,7 @@ export default function Button({
       type='button'
       disabled={disabled}
       className={clsxm(
-        'inline-flex items-center px-4 py-2 font-semibold rounded',
+        'inline-flex items-center px-4 py-2 font-semibold rounded-md',
         'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
         'shadow-sm',
         'transition-colors duration-75',

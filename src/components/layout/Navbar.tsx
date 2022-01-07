@@ -3,7 +3,7 @@ import {
   faBell,
   faShoppingCart,
   faSignInAlt,
-  faSignOutAlt,
+  faUser,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -82,16 +82,19 @@ const RightGroup = ({ user }: NavProps) => {
   const cartState = useSelector((state: AppState) => state.cart);
 
   return (
-    <div className='hidden justify-end items-center space-x-2 md:flex md:flex-1 lg:w-0'>
+    <div className='hidden gap-2 justify-end items-end scale-75 sm:flex md:flex-1 lg:w-0 lg:scale-100'>
       {user ? (
-        <ButtonLink className='mt-2' variant='outline' href='/api/auth/logout'>
+        <ButtonLink
+          className=''
+          variant='outline'
+          href='/dashboard/profile-informations'
+        >
           <div className='inline-flex flex-row gap-2'>
             <FontAwesomeIcon
-              icon={faSignOutAlt}
-              className='flex-shrink-0 w-6 h-6'
+              icon={faUser}
+              className='w-6 h-6'
               aria-hidden='true'
             />
-            <span>Sign Out</span>
           </div>
         </ButtonLink>
       ) : (
@@ -100,7 +103,7 @@ const RightGroup = ({ user }: NavProps) => {
             <div className='inline-flex flex-row gap-2'>
               <FontAwesomeIcon
                 icon={faSignInAlt}
-                className='flex-shrink-0 w-6 h-6'
+                className='w-6 h-6'
                 aria-hidden='true'
               />
               <span>Sign In</span>
@@ -108,14 +111,13 @@ const RightGroup = ({ user }: NavProps) => {
           </ButtonLink>
         </>
       )}
+      {user && buildCartAndNotifierButton('/notifications', faBell, 0)}
 
       {buildCartAndNotifierButton(
         '/cart',
         faShoppingCart,
         cartState.cartItems.length
       )}
-
-      {user && buildCartAndNotifierButton('/notifications', faBell, 5)}
     </div>
   );
 
@@ -127,7 +129,7 @@ const RightGroup = ({ user }: NavProps) => {
     return (
       <div className='group relative cursor-pointer'>
         <ButtonLink
-          className='mt-2 mr-2'
+          className=''
           variant={
             value == 0 || value === null || value === undefined
               ? 'outline'
@@ -138,7 +140,7 @@ const RightGroup = ({ user }: NavProps) => {
           <div className='inline-flex flex-row gap-2'>
             <FontAwesomeIcon
               icon={icon}
-              className='flex-shrink-0 w-6 h-6'
+              className='w-6 h-6'
               aria-hidden='true'
             />
           </div>
@@ -146,7 +148,7 @@ const RightGroup = ({ user }: NavProps) => {
         {value == 0 || value === null || value === undefined ? (
           <></>
         ) : (
-          <div className='absolute top-0 right-0 px-2 text-white bg-red-600 rounded-full group-hover:bg-red-400'>
+          <div className='absolute -top-2 -right-2 px-2 text-white bg-red-600 rounded-full group-hover:bg-red-400'>
             {`${value}`}
           </div>
         )}

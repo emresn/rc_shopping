@@ -17,13 +17,13 @@ const DashboardLayout = ({ children, title }: Props) => {
   return (
     <>
       <div className='md:container md:mx-auto'>
-        <div className='flex flex-col my-6 sm:flex-row'>
+        <div className='flex flex-row my-6'>
           <div
-            className={`border border-gray-200 p-4 shadow-lg flex-row inline-flex ${
+            className={`border border-gray-200 p-4 shadow-lg flex-row  hidden sm:inline-flex ${
               isExpanded && 'w-3/12'
             }`}
           >
-            {isExpanded && <LeftMenu />}
+            <LeftMenu isExpanded={isExpanded} />
             <span
               onClick={() => setIsExpanded(!isExpanded)}
               className='inline-flex text-xl'
@@ -35,7 +35,7 @@ const DashboardLayout = ({ children, title }: Props) => {
           </div>
 
           <div className='p-4 w-full border border-gray-200 shadow-lg sm:border-l'>
-            <div className='inline-flex flex-col w-full'>
+            <div className='inline-flex flex-col flex-auto w-full h-full'>
               <h3>{title}</h3>
               {children}
             </div>

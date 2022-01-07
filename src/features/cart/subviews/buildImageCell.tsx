@@ -9,7 +9,7 @@ interface Props {
 }
 const BuildImageCell = ({ item }: Props) => {
   return (
-    <div className=''>
+    <div className='overflow-auto'>
       {item.product.images && (
         <NextImage
           useSkeleton

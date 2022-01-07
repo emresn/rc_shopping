@@ -4,13 +4,13 @@ interface CartViewProps {
 
 export const BuildHeadersRow = ({ rowClass }: CartViewProps) => {
   return (
-    <div className={`${rowClass}`}>
+    <div className={`${rowClass} text-sm sm:text-lg font-bold `}>
       <div className='w-2/12'></div>
-      <h4 className='w-2/12'>Product</h4>
-      <h4 className='w-3/12 text-center'>Details</h4>
-      <h4 className='w-3/12 text-center'>Quantity</h4>
-      <h4 className='w-1/12 text-center'>Unit Price</h4>
-      <h4 className='w-1/12 text-right'>Total Price</h4>
+      <span className='w-2/12'>Product</span>
+      <span className='hidden w-3/12 text-center sm:block'>Details</span>
+      <span className='w-3/12 text-center'>Quantity</span>
+      <span className='w-1/12 text-center'>Unit Price</span>
+      <span className='w-1/12 text-right'>Total Price</span>
     </div>
   );
 };

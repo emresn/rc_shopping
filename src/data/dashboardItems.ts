@@ -5,6 +5,7 @@ import {
   faCheck,
   faCog,
   faEnvelope,
+  faSignOutAlt,
   faThLarge,
   faUserAlt,
 } from '@fortawesome/free-solid-svg-icons';
@@ -71,4 +72,10 @@ export const dashboardHomeMenuItem: MenuItemModel = {
   href: '/',
   icon: faThLarge,
   className: 'text-primary-500 ',
+};
+export const logOutHomeMenuItem: MenuItemModel = {
+  icon: faSignOutAlt,
+  title: 'Logout',
+  className: 'text-red-400',
+  href: '/api/auth/logout',
 };

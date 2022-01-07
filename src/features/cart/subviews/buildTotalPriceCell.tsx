@@ -14,10 +14,12 @@ const BuildTotalPriceCell = ({ item }: Props) => {
   const dispatch = useAppDispatch();
   return (
     <>
-      <span> {`${item.product.price * item.count} $`}</span>
+      <span className='whitespace-nowrap'>
+        {`${item.product.price * item.count} $`}
+      </span>
 
       <button
-        className='absolute top-0 right-0 text-red-500'
+        className='text-red-500'
         onClick={() => dispatch(removeCartItem({ id: item.product.id }))}
       >
         <FontAwesomeIcon icon={faTrashAlt} />

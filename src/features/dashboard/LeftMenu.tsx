@@ -10,29 +10,45 @@ import {
   dashboardHomeMenuItem,
   dashboardOrderItems,
   dashboardProfileItems,
+  logOutHomeMenuItem,
   notificationMenuItem,
 } from '../../data/dashboardItems';
 
-const LeftMenu = () => {
+interface Props {
+  isExpanded: boolean;
+}
+const LeftMenu = ({ isExpanded }: Props) => {
   return (
     <>
       <div className='inline-flex flex-col w-full'>
-        <h4>My Orders</h4>
-        <div className='inline-flex flex-col gap-2 ml-2'>
+        <h4 className={`${isExpanded ? '' : 'hidden'}`}>My Orders</h4>
+        <div
+          className={`${
+            !isExpanded ? 'pt-8 gap-6' : 'gap-2'
+          } flex-col  inline-flex ml-2`}
+        >
           {[...dashboardOrderItems, notificationMenuItem].map((e, idx) => (
-            <BuildLink item={e} key={idx} />
+            <BuildLink onlyIcon={!isExpanded} item={e} key={idx} />
           ))}
         </div>
 
         <hr className='border-b-gray-300 mt-4 mr-4 border shadow-md' />
 
-        <h4>My Profile</h4>
-        <div className='inline-flex flex-col gap-2 ml-2'>
-          {[...dashboardProfileItems, dashboardHomeMenuItem].map((e, idx) => (
-            <BuildLink item={e} key={idx} />
+        {isExpanded ? <h4>My Profile</h4> : <div className='p-2'></div>}
+        <div
+          className={`${
+            !isExpanded ? 'pt-8 gap-6' : 'gap-2'
+          } flex-col  inline-flex ml-2`}
+        >
+          {[
+            ...dashboardProfileItems,
+            dashboardHomeMenuItem,
+            logOutHomeMenuItem,
+          ].map((e, idx) => (
+            <BuildLink onlyIcon={!isExpanded} item={e} key={idx} />
           ))}
         </div>
-        <div className='h-32'></div>
+        <div className='flex-auto'></div>
       </div>
     </>
   );
@@ -40,9 +56,10 @@ const LeftMenu = () => {
 
 interface LinkProps {
   item: MenuItemModel;
+  onlyIcon?: boolean;
 }
 
-const BuildLink = ({ item }: LinkProps) => {
+const BuildLink = ({ item, onlyIcon = false }: LinkProps) => {
   const router = useRouter();
 
   const active = (e: string) =>
@@ -51,17 +68,19 @@ const BuildLink = ({ item }: LinkProps) => {
       : '';
 
   return (
-    <div className='inline-flex flex-row gap-2'>
-      <span className={item.className}>
+    <div className={`${onlyIcon && 'scale-150'} flex-row gap-3 inline-flex`}>
+      <PrimaryLink className={item.className} href={`/dashboard${item.href}`}>
         <FontAwesomeIcon icon={item.icon} />
-      </span>
-      <PrimaryLink
-        className={`font-medium text-black ${active(item.href)}`}
-        href={`/dashboard${item.href}`}
-        key={item.title}
-      >
-        <span>{item.title}</span>
       </PrimaryLink>
+      {!onlyIcon && (
+        <PrimaryLink
+          className={`font-medium text-black ${active(item.href)}`}
+          href={`/dashboard${item.href}`}
+          key={item.title}
+        >
+          <span>{item.title}</span>
+        </PrimaryLink>
+      )}
     </div>
   );
 };
