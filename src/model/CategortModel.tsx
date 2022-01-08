@@ -1,16 +1,6 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  Computers,
-  Electronics,
-  Headsets,
-  Keyboards,
-  Mouses,
-  Smartphones,
-  TVs,
-} from '@/data/categories';
-
-import { CategoryEnums } from '@/enums/categories';
+import { categories } from '@/data/categories';
 
 export type CategoryModel = {
   name: string;
@@ -19,23 +9,11 @@ export type CategoryModel = {
 };
 
 export function CategoryModelFromString(name: string) {
-  switch (name) {
-    case CategoryEnums.computers:
-      return Computers;
-    case CategoryEnums.smartphones:
-      return Smartphones;
-    case CategoryEnums.electronics:
-      return Electronics;
-    case CategoryEnums.keyboards:
-      return Keyboards;
-    case CategoryEnums.mouses:
-      return Mouses;
-    case CategoryEnums.headsets:
-      return Headsets;
-    case CategoryEnums.tvs:
-      return TVs;
+  const idx = categories.findIndex((e) => e.name == name);
 
-    default:
-      return Computers;
+  if (idx != null && idx != -1) {
+    return categories[idx];
+  } else {
+    return null;
   }
 }

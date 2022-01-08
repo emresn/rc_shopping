@@ -9,7 +9,7 @@ interface Props {
 
 const SubLayout = ({ children, title }: Props) => {
   const mainColClass =
-    'bg-white flex-col inline-flex rounded-lg shadow-lg w-full  p-1 sm:p-4 my-4 border border-gray-400 border-slate-600';
+    'bg-white flex-col inline-flex rounded-lg shadow-lg w-full  p-1 sm:p-4 my-4 border border-gray-200 ';
   return (
     <>
       <Seo />

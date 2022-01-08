@@ -15,7 +15,9 @@ const BuildTotalPriceCell = ({ item }: Props) => {
   return (
     <>
       <span className='whitespace-nowrap'>
-        {`${item.product.price * item.count} $`}
+        {item.product.discountPrice
+          ? `${Math.floor(item.product.discountPrice * item.count)} $`
+          : `${Math.floor(item.product.price * item.count)} $`}
       </span>
 
       <button

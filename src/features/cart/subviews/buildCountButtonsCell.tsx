@@ -1,3 +1,6 @@
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Button from '@/components/buttons/Button';
 
 import { ProductCountModel } from '@/model/ProductCountModel';
@@ -16,18 +19,18 @@ const BuildCountButtonsCell = ({ item, idx }: Props) => {
     <>
       <Button
         variant='light'
-        className='rounded-full'
+        className='bg-amber-200 rounded-full'
         onClick={() => dispatch(decrementCartItem(idx))}
       >
-        -
+        <FontAwesomeIcon icon={faMinus} />
       </Button>
       <span className='text-right'>{item.count}</span>
       <Button
         variant='light'
-        className='rounded-full'
+        className='bg-amber-200 rounded-full'
         onClick={() => dispatch(incrementCartItem(idx))}
       >
-        +
+        <FontAwesomeIcon icon={faPlus} />
       </Button>
     </>
   );

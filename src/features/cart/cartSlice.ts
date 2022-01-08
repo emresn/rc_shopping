@@ -17,8 +17,17 @@ export const cartSlice = createSlice({
   name: 'CartState',
   initialState,
   reducers: {
-    putCartItem: (state, action: PayloadAction<ProductCountModel[]>) => {
+    checkCartItems: (state, action: PayloadAction<string>) => {
+      const localCartStr = action.payload;
+      if (localCartStr) {
+        const localCartItems: ProductCountModel[] = JSON.parse(localCartStr);
+        state.cartItems = [...localCartItems];
+        state.status = 'updated';
+      }
+    },
+    putCartItems: (state, action: PayloadAction<ProductCountModel[]>) => {
       state.cartItems = action.payload;
+      state.status = 'updated';
     },
     addCartItem: (state, action: PayloadAction<ProductCountModel[]>) => {
       if (state.cartItems.length === 0) {
@@ -37,12 +46,15 @@ export const cartSlice = createSlice({
           }
         }
       }
+      localStorage.setItem('rcShopCart', JSON.stringify(state.cartItems));
       state.status = 'success';
     },
     removeCartItem: (state, action: PayloadAction<{ id: string }>) => {
       state.cartItems = state.cartItems.filter(
         (e) => e.product.id !== action.payload.id
       );
+      localStorage.setItem('rcShopCart', JSON.stringify(state.cartItems));
+      state.status = 'success';
     },
     incrementCartItem: (state, action: PayloadAction<number>) => {
       const currentPC = state.cartItems[action.payload];
@@ -53,6 +65,7 @@ export const cartSlice = createSlice({
         state.cartItems[action.payload].count = currentCount + 1;
 
         state.status = 'updated';
+        localStorage.setItem('rcShopCart', JSON.stringify(state.cartItems));
       }
     },
     decrementCartItem: (state, action: PayloadAction<number>) => {
@@ -61,6 +74,7 @@ export const cartSlice = createSlice({
       if (currentCount >= 1) {
         state.cartItems[action.payload].count = currentCount - 1;
         state.status = 'updated';
+        localStorage.setItem('rcShopCart', JSON.stringify(state.cartItems));
       }
     },
     setUpdatedCartState: (state) => {
@@ -70,13 +84,15 @@ export const cartSlice = createSlice({
     setInitialCartState: (state) => {
       state.cartItems = [];
       state.status = 'initial';
+      localStorage.setItem('rcShopCart', '');
     },
   },
 });
 
 export const {
-  putCartItem,
+  checkCartItems,
   addCartItem,
+  putCartItems,
   removeCartItem,
   incrementCartItem,
   decrementCartItem,

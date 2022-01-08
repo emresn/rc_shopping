@@ -8,12 +8,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { guestMenuItems, userMenuItems } from '@/data/menuItems';
 
+import { putCartItems } from '@/features/cart/cartSlice';
 import { setInitial } from '@/features/home/homeSlice';
+import { ProductCountModel } from '@/model/ProductCountModel';
 import { useAppDispatch } from '@/redux/hooks';
 import { AppState } from '@/redux/store';
 
@@ -23,6 +25,17 @@ import NextImage from '../NextImage';
 
 export const Navbar = () => {
   const { user, error, isLoading } = useUser();
+  const dispatch = useAppDispatch();
+  const state = useSelector((state: AppState) => state.category);
+
+  useEffect(() => {
+    if (state.status === 'initial') {
+      const localString = localStorage.getItem('rcShopCart');
+      const cartItems: ProductCountModel[] =
+        localString && JSON.parse(localString);
+      dispatch(putCartItems(cartItems));
+    }
+  }, [state, dispatch]);
 
   return (
     <header className='bg-gray-200'>
@@ -116,7 +129,7 @@ const RightGroup = ({ user }: NavProps) => {
       {buildCartAndNotifierButton(
         '/cart',
         faShoppingCart,
-        cartState.cartItems.length
+        cartState.cartItems ? cartState.cartItems.length : 0
       )}
     </div>
   );

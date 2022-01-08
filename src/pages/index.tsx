@@ -37,7 +37,9 @@ export default function HomePage() {
         <div className='inline-flex flex-col gap-2 py-4 w-full'>
           <h3>Hot Deals</h3>
           {state.status === 'loading' || state.status === 'initial' ? (
-            <Loading />
+            <div className='mx-auto w-60 h-60'>
+              <Loading />
+            </div>
           ) : state.status === 'failed' ? (
             <></>
           ) : (

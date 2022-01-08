@@ -35,7 +35,7 @@ const ProductView = () => {
     const findProductCount = () => {
       let idx;
 
-      if (state.cart.cartItems.length > 0) {
+      if (state.cart.cartItems && state.cart.cartItems.length > 0) {
         idx = state.cart.cartItems.findIndex((e) => e.product.key === key);
 
         idx !== undefined &&

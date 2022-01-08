@@ -17,9 +17,9 @@ const BuildItemRows = ({ idx, item, rowClass }: Props) => {
   return (
     <div
       key={idx}
-      className={`${rowClass} font-medium group text-md hover:bg-gray-200 text-sm sm:text-md`}
+      className={`${rowClass} font-medium group text-md hover:bg-gray-200 text-sm sm:text-md lg:text-lg h-40`}
     >
-      <div className='w-2/12'>
+      <div className='w-2/12 h-full'>
         <BuildImageCell item={item} />
       </div>
       <div className='w-2/12'>
@@ -32,7 +32,9 @@ const BuildItemRows = ({ idx, item, rowClass }: Props) => {
         <BuildCountButtonsCell item={item} idx={idx} />
       </div>
       <div className='w-1/12 text-center whitespace-nowrap'>
-        {`${item.product.price} $`}
+        {item.product.discountPrice
+          ? `${Math.floor(item.product.discountPrice)} $`
+          : `${Math.floor(item.product.price)} $`}
       </div>
       <div className='flex flex-col gap-2 justify-end w-1/12 text-center sm:flex-row'>
         <BuildTotalPriceCell item={item} />

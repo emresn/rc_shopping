@@ -21,14 +21,14 @@ const CategoryView = () => {
   const dispatch = useAppDispatch();
   const { category } = router.query;
   const categoryModel = CategoryModelFromString(`${category}`);
-  const href = generateHrefFromCategoryModel(categoryModel);
+  const href = categoryModel && generateHrefFromCategoryModel(categoryModel);
   const state = useSelector((state: AppState) => state.category);
 
   if (
     state.status === 'initial' ||
-    categoryModel.name !== state.filterOptions.category
+    (categoryModel && categoryModel.name !== state.filterOptions.category)
   ) {
-    dispatch(categoryProductsAsync(href));
+    href && dispatch(categoryProductsAsync(href));
   }
 
   const products = useAppSelector(selectCategoryProducts);
@@ -42,7 +42,9 @@ const CategoryView = () => {
           <h3>{category}</h3>
 
           {state.status === 'loading' || state.status === 'initial' ? (
-            <Loading />
+            <div className='mx-auto w-60 h-60'>
+              <Loading />
+            </div>
           ) : state.status === 'failed' ? (
             <></>
           ) : (

@@ -9,7 +9,7 @@ const productsHandler: NextApiHandler = async (req, res) => {
 
   const options = generateRequestOptions(href);
 
-  // http://localhost:3000/api/products/sort&created_at/limit&10/offset&10
+  // http://localhost:3000/api/products/created_at&asc/limit&10/offset&10
   const responseData = await fetchProducts(req, res, options);
   res.json({ data: responseData, options: options });
 };

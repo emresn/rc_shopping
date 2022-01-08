@@ -8,46 +8,45 @@ import {
   faTv,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { CategoryEnums } from '@/enums/categories';
 import { CategoryModel } from '@/model/CategortModel';
 
 export const Computers: CategoryModel = {
-  name: CategoryEnums.computers,
+  name: 'Computers',
   href: '/products/Computers',
   icon: faLaptop,
 };
 
 export const Smartphones: CategoryModel = {
-  name: CategoryEnums.smartphones,
+  name: 'Smartphones',
   href: '/products/Smartphones',
   icon: faMobileAlt,
 };
 
 export const Electronics: CategoryModel = {
-  name: CategoryEnums.electronics,
+  name: 'Electronics',
   href: '/products/Electronics',
   icon: faMicrochip,
 };
 
 export const Keyboards: CategoryModel = {
-  name: CategoryEnums.keyboards,
+  name: 'Keyboards',
   href: '/products/Keyboards',
   icon: faKeyboard,
 };
 
 export const Mouses: CategoryModel = {
-  name: CategoryEnums.mouses,
+  name: 'Mouses',
   href: '/products/Mouses',
   icon: faMouse,
 };
 
 export const Headsets: CategoryModel = {
-  name: CategoryEnums.headsets,
+  name: 'Headsets',
   href: '/products/Headsets',
   icon: faHeadphonesAlt,
 };
 export const TVs: CategoryModel = {
-  name: CategoryEnums.tvs,
+  name: 'TVs',
   href: '/products/Tvs',
   icon: faTv,
 };
