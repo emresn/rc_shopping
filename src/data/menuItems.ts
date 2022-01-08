@@ -1,11 +1,12 @@
 import {
-  faCog,
   faHome,
   faInfoCircle,
   faMapMarkedAlt,
   faQuestionCircle,
+  faSignInAlt,
   faStore,
   faThLarge,
+  faUser,
   faUserShield,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -47,11 +48,6 @@ export const moreMenuItems: MenuItemModel[] = [
     href: '/more/about-us',
     icon: faInfoCircle,
   },
-  {
-    title: 'Components',
-    href: '/components',
-    icon: faCog,
-  },
 ];
 
 export const guestMenuItems: MenuItemModel[] = [
@@ -89,3 +85,15 @@ export const userMenuItems: MenuItemModel[] = [
     icon: faThLarge,
   },
 ];
+
+export const signInItem: MenuItemModel = {
+  title: 'Sign In',
+  href: '/api/auth/login',
+  icon: faSignInAlt,
+};
+
+export const userProfileItem: MenuItemModel = {
+  title: 'My Profile',
+  href: '/dashboard/profile-informations',
+  icon: faUser,
+};

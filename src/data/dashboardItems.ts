@@ -77,5 +77,5 @@ export const logOutHomeMenuItem: MenuItemModel = {
   icon: faSignOutAlt,
   title: 'Logout',
   className: 'text-red-400',
-  href: '/api/auth/logout',
+  href: '../../api/auth/logout',
 };

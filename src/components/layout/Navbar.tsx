@@ -1,9 +1,9 @@
 import { UserProfile, useUser } from '@auth0/nextjs-auth0';
 import {
+  faBars,
   faBell,
   faShoppingCart,
-  faSignInAlt,
-  faUser,
+  faTimes,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +11,12 @@ import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { guestMenuItems, userMenuItems } from '@/data/menuItems';
+import {
+  guestMenuItems,
+  signInItem,
+  userMenuItems,
+  userProfileItem,
+} from '@/data/menuItems';
 
 import { putCartItems } from '@/features/cart/cartSlice';
 import { setInitial } from '@/features/home/homeSlice';
@@ -20,10 +25,16 @@ import { useAppDispatch } from '@/redux/hooks';
 import { AppState } from '@/redux/store';
 
 import { NavLink } from './navbarWidgets/NavLink';
+import Button from '../buttons/Button';
 import ButtonLink from '../links/ButtonLink';
 import NextImage from '../NextImage';
 
-export const Navbar = () => {
+interface Props {
+  isMobileMenuActive: boolean;
+  setMobileMenu: (value: boolean) => void;
+}
+
+export const Navbar = ({ isMobileMenuActive, setMobileMenu }: Props) => {
   const { user, error, isLoading } = useUser();
   const dispatch = useAppDispatch();
   const state = useSelector((state: AppState) => state.category);
@@ -46,12 +57,28 @@ export const Navbar = () => {
         <div className='flex flex-row justify-between items-end py-4 md:justify-start md:space-x-0'>
           <LeftGroup />
           <MiddleGroup user={user} />
+
           <RightGroup user={user} isLoading={isLoading} error={error} />
+          {buildHamburgerButton()}
         </div>
       </div>
       {error && <span>{error.message}</span>}
     </header>
   );
+
+  function buildHamburgerButton() {
+    return (
+      <Button
+        className='sm:hidden'
+        variant={isMobileMenuActive ? 'primary' : 'primary'}
+        onClick={() => setMobileMenu(!isMobileMenuActive)}
+      >
+        <span className={isMobileMenuActive ? 'text-red-100' : 'text-white'}>
+          <FontAwesomeIcon icon={isMobileMenuActive ? faTimes : faBars} />
+        </span>
+      </Button>
+    );
+  }
 };
 
 const LeftGroup = () => {
@@ -100,14 +127,10 @@ const RightGroup = ({ user }: NavProps) => {
   return (
     <div className='hidden gap-2 justify-end items-end scale-75 sm:flex md:flex-1 lg:w-0 lg:scale-100'>
       {user ? (
-        <ButtonLink
-          className=''
-          variant='outline'
-          href='/dashboard/profile-informations'
-        >
+        <ButtonLink className='' variant='outline' href={userProfileItem.href}>
           <div className='inline-flex flex-row gap-2'>
             <FontAwesomeIcon
-              icon={faUser}
+              icon={userProfileItem.icon}
               className='w-6 h-6'
               aria-hidden='true'
             />
@@ -115,14 +138,14 @@ const RightGroup = ({ user }: NavProps) => {
         </ButtonLink>
       ) : (
         <>
-          <ButtonLink variant='primary' href='/api/auth/login' className='mt-2'>
+          <ButtonLink variant='primary' href={signInItem.href} className='mt-2'>
             <div className='inline-flex flex-row gap-2'>
               <FontAwesomeIcon
-                icon={faSignInAlt}
+                icon={signInItem.icon}
                 className='w-6 h-6'
                 aria-hidden='true'
               />
-              <span>Sign In</span>
+              <span>{signInItem.title}</span>
             </div>
           </ButtonLink>
         </>

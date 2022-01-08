@@ -1,4 +1,4 @@
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ProductCountModel } from '@/model/ProductCountModel';
@@ -24,7 +24,7 @@ const BuildTotalPriceCell = ({ item }: Props) => {
         className='text-red-500'
         onClick={() => dispatch(removeCartItem({ id: item.product.id }))}
       >
-        <FontAwesomeIcon icon={faTrashAlt} />
+        <FontAwesomeIcon icon={faTimes} />
       </button>
     </>
   );
