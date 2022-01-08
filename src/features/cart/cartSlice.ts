@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
       }
     },
     putCartItems: (state, action: PayloadAction<ProductCountModel[]>) => {
-      state.cartItems = action.payload;
+      state.cartItems = state.cartItems ? action.payload : [];
       state.status = 'updated';
     },
     addCartItem: (state, action: PayloadAction<ProductCountModel[]>) => {
@@ -61,7 +61,7 @@ export const cartSlice = createSlice({
       const currentStock = currentPC.product.stock;
       const currentCount = currentPC.count;
 
-      if (currentStock && currentStock > currentCount + 1) {
+      if (currentStock && currentStock > currentCount) {
         state.cartItems[action.payload].count = currentCount + 1;
 
         state.status = 'updated';
@@ -71,7 +71,7 @@ export const cartSlice = createSlice({
     decrementCartItem: (state, action: PayloadAction<number>) => {
       const currentPC = state.cartItems[action.payload];
       const currentCount = currentPC.count;
-      if (currentCount >= 1) {
+      if (currentCount > 1) {
         state.cartItems[action.payload].count = currentCount - 1;
         state.status = 'updated';
         localStorage.setItem('rcShopCart', JSON.stringify(state.cartItems));

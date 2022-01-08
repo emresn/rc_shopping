@@ -1,6 +1,6 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { categories } from '@/data/categories';
+import { categories, Computers } from '@/data/categories';
 
 export type CategoryModel = {
   name: string;
@@ -14,6 +14,6 @@ export function CategoryModelFromString(name: string) {
   if (idx != null && idx != -1) {
     return categories[idx];
   } else {
-    return null;
+    return Computers;
   }
 }

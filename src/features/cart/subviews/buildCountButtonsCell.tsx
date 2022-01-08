@@ -19,7 +19,7 @@ const BuildCountButtonsCell = ({ item, idx }: Props) => {
     <>
       <Button
         variant='light'
-        className='bg-amber-200 rounded-full'
+        className='bg-amber-200 rounded-full border-amber-200'
         onClick={() => dispatch(decrementCartItem(idx))}
       >
         <FontAwesomeIcon icon={faMinus} />
@@ -27,7 +27,7 @@ const BuildCountButtonsCell = ({ item, idx }: Props) => {
       <span className='text-right'>{item.count}</span>
       <Button
         variant='light'
-        className='bg-amber-200 rounded-full'
+        className='bg-amber-200 rounded-full border-amber-200'
         onClick={() => dispatch(incrementCartItem(idx))}
       >
         <FontAwesomeIcon icon={faPlus} />
