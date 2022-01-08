@@ -33,7 +33,10 @@ export const Navbar = () => {
       const localString = localStorage.getItem('rcShopCart');
       const cartItems: ProductCountModel[] =
         localString && JSON.parse(localString);
-      dispatch(putCartItems(cartItems));
+
+      if (cartItems != null && cartItems != undefined) {
+        dispatch(putCartItems(cartItems));
+      }
     }
   }, [state, dispatch]);
 
